@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F2 Store — Loja Premium</title>
+<link rel="stylesheet" href="index.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+</head>
+<body>
+
+<!-- SPLASH -->
+<section id="splash">
+  <div class="splash-grid"></div>
+  <div class="splash-content">
+    <div class="splash-logo">F<em>2</em></div>
+    <div class="splash-tagline">Loja Premium</div>
+    <button class="btn-splash" onclick="abrirLoja()">
+      <span>Entrar na loja</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</section>
+
+<!-- LOJA -->
+<section id="loja">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" id="navLogo" onclick="logoClick()">F<em>2</em> Store</a>
+    <div class="nav-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Pesquisar produtos..." id="searchInput" oninput="buscar()">
+    </div>
+    <div class="nav-actions">
+      <button class="admin-logout" id="btnLogout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Sair do painel</span>
+      </button>
+      <button class="btn-cart" onclick="abrirCarrinho()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Carrinho</span>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SLIDESHOW -->
+  <div class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <button class="hero-arrow prev" onclick="slidePrev()"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="hero-arrow next" onclick="slideNext()"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="hero-dots" id="heroDots"></div>
+  </div>
+
+  <!-- SHOP -->
+  <div class="shop">
+    <div class="shop-top">
+      <h2 class="shop-title">Todos os produtos</h2>
+      <span class="shop-meta" id="shopMeta">0 itens</span>
+    </div>
+    <div class="filter-row" id="filterRow"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <footer>
+    <div class="fl">F2 Store</div>
+    <span>© 2025 F2 Loja Premium. Todos os direitos reservados.</span>
+    <span><i class="fa-brands fa-whatsapp"></i> (11) 97283-3011</span>
+  </footer>
+</section>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="fecharCarrinho()"></div>
+
+<!-- DRAWER CARRINHO -->
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Meu carrinho</h3>
+    <button class="btn-close" onclick="fecharCarrinho()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</div>
+
+<!-- MODAL PRODUTO -->
+<div class="modal" id="modal">
+  <button class="btn-fechar-modal" onclick="fecharModal()"><i class="fa-solid fa-xmark"></i></button>
+  <div class="modal-grid">
+    <div class="modal-img-side">
+      <img class="modal-main-img" id="modalImg" src="" alt="">
+      <div class="modal-thumbs" id="modalThumbs"></div>
+    </div>
+    <div class="modal-info">
+      <div class="modal-eyebrow">F2 Store — Premium</div>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-price" id="modalPrice"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="size-lbl">Selecione o tamanho</div>
+      <div class="sizes" id="sizeGrid"></div>
+      <div class="stock-info-modal" id="stockInfo"></div>
+      <button class="btn-add" id="btnAdd" onclick="addCarrinho()">
+        <i class="fa-solid fa-plus"></i><span>Adicionar ao carrinho</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN ADMIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-icon"><i class="fa-solid fa-lock"></i></div>
+    <h3>Área restrita</h3>
+    <p>Digite a senha para acessar o painel de controle da loja.</p>
+    <div class="login-field">
+      <label>Senha</label>
+      <div class="login-input-wrap">
+        <input type="password" id="senhaInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')verificarSenha()">
+        <button class="toggle-pass" onclick="toggleVerSenha()" id="togglePassBtn" tabindex="-1">
+          <i class="fa-regular fa-eye" id="eyeIcon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="login-error" id="loginErro"></div>
+    <button class="btn-login" onclick="verificarSenha()">Entrar no painel</button>
+    <button class="btn-cancel-login" onclick="fecharLogin()">Cancelar</button>
+  </div>
+</div>
+
+<!-- PAINEL ADMIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-head">
+      <h2>Painel de Controle</h2>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
+        <div class="admin-tabs">
+          <button class="atab on" onclick="adminTab('lista',this)">Produtos</button>
+          <button class="atab" onclick="adminTab('novo',this)">+ Adicionar</button>
+        </div>
+        <button onclick="resetarProdutos()" style="padding:.45rem .8rem;border-radius:6px;border:1px solid var(--gray-200);background:none;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--gray-400);cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='#D63B3B';this.style.color='#D63B3B'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-400)'">
+          <i class="fa-solid fa-rotate-left"></i> Restaurar padrão
+        </button>
+        <button class="btn-close" onclick="fecharAdmin()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="admin-body">
+      <div id="adminLista"></div>
+      <div id="adminNovo" style="display:none">
+        <div class="add-form" id="addForm">
+          <div class="form-field">
+            <label>Nome do produto *</label>
+            <input type="text" id="fNome" placeholder="Ex: Camiseta Premium">
+          </div>
+          <div class="form-field">
+            <label>Preço (R$) *</label>
+            <input type="number" id="fPreco" placeholder="Ex: 149" min="0" step="0.01">
+          </div>
+          <div class="form-field full">
+            <label>Descrição</label>
+            <textarea id="fDesc" rows="3" placeholder="Descrição breve do produto..."></textarea>
+          </div>
+          <div class="form-field">
+            <label>URL da imagem *</label>
+            <input type="url" id="fImg" placeholder="https://...">
+          </div>
+          <div class="form-field">
+            <label>Estoque inicial *</label>
+            <input type="number" id="fEstoque" placeholder="Ex: 10" min="0" value="10">
+          </div>
+          <div class="form-field">
+            <label>Tamanhos disponíveis</label>
+            <input type="text" id="fSizes" placeholder="P,M,G,GG ou 38,40,42">
+            <div class="size-input-help">Separe por vírgula. Ex: P,M,G,GG</div>
+          </div>
+          <div class="form-field">
+            <label>Badge</label>
+            <div class="badge-preview" id="badgeOpts">
+              <span class="bp-opt" data-val="">Nenhum</span>
+              <span class="bp-opt" data-val="Novo">Novo</span>
+              <span class="bp-opt" data-val="Destaque">Destaque</span>
+              <span class="bp-opt" data-val="Premium">Premium</span>
+              <span class="bp-opt" data-val="Oferta">Oferta</span>
+              <span class="bp-opt" data-val="Limitado">Limitado</span>
+            </div>
+          </div>
+          <button class="btn-add-product" onclick="adicionarProduto()">
+            <i class="fa-solid fa-plus"></i> Adicionar produto
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WPP FLOAT -->
+<a class="wpp-float" href="https://wa.me/5511972833011" target="_blank" title="Falar no WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
