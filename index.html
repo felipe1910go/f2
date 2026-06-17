@@ -9,281 +9,115 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --black:#111;
-  --white:#fff;
-  --off-white:#F8F7F4;
-  --gray-100:#F0EDEA;
-  --gray-200:#E2DDD8;
-  --gray-400:#9E9890;
-  --gray-600:#5A5650;
-  --gold:#C8963E;
-  --gold-light:#F0D898;
-  --green:#22A05A;
-  --red:#D63B3B;
+  --black:#111;--white:#fff;--off-white:#F8F7F4;
+  --gray-100:#F0EDEA;--gray-200:#E2DDD8;--gray-400:#9E9890;--gray-600:#5A5650;
+  --gold:#C8963E;--gold-light:#F0D898;--green:#22A05A;--red:#D63B3B;
   --ease:cubic-bezier(0.4,0,0.2,1);
 }
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* ========= SPLASH ========= */
-#splash{
-  min-height:100vh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  background:var(--black);position:relative;overflow:hidden;
-}
-.splash-grid{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(200,150,62,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(200,150,62,.05) 1px,transparent 1px);
-  background-size:48px 48px;
-}
+/* SPLASH */
+#splash{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--black);position:relative;overflow:hidden;}
+.splash-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,150,62,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(200,150,62,.05) 1px,transparent 1px);background-size:48px 48px;}
 .splash-content{position:relative;z-index:2;text-align:center;}
-.splash-logo{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(4.5rem,12vw,9rem);
-  font-weight:400;color:var(--white);
-  letter-spacing:.12em;line-height:1;margin-bottom:.2em;
-}
+.splash-logo{font-family:'Playfair Display',serif;font-size:clamp(4.5rem,12vw,9rem);font-weight:400;color:var(--white);letter-spacing:.12em;line-height:1;margin-bottom:.2em;}
 .splash-logo em{font-style:italic;color:var(--gold);}
-.splash-tagline{
-  font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:3rem;font-weight:500;
-}
-.btn-splash{
-  display:inline-flex;align-items:center;gap:.9rem;
-  padding:.9rem 2.4rem;
-  border:1px solid rgba(200,150,62,.45);
-  color:var(--white);background:transparent;
-  font-family:'Inter',sans-serif;font-size:.78rem;
-  font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-  cursor:pointer;text-decoration:none;
-  transition:all .35s var(--ease);position:relative;overflow:hidden;
-}
-.btn-splash::before{
-  content:'';position:absolute;inset:0;background:var(--gold);
-  transform:translateX(-100%);transition:transform .35s var(--ease);
-}
+.splash-tagline{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:3rem;font-weight:500;}
+.btn-splash{display:inline-flex;align-items:center;gap:.9rem;padding:.9rem 2.4rem;border:1px solid rgba(200,150,62,.45);color:var(--white);background:transparent;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .35s var(--ease);position:relative;overflow:hidden;}
+.btn-splash::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);transition:transform .35s var(--ease);}
 .btn-splash:hover::before{transform:translateX(0);}
 .btn-splash:hover{color:var(--black);}
 .btn-splash span,.btn-splash i{position:relative;z-index:1;}
+.splash-loading{font-size:.72rem;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-top:1.2rem;opacity:0;transition:opacity .3s;}
+.splash-loading.on{opacity:1;}
 
-/* ========= LOJA ========= */
+/* LOJA */
 #loja{display:none;min-height:100vh;background:var(--off-white);}
 
 /* NAV */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(248,247,244,.93);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--gray-200);
-  padding:0 2.5rem;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:1rem;
-}
-.nav-logo{
-  font-family:'Playfair Display',serif;font-size:1.5rem;
-  font-weight:600;color:var(--black);text-decoration:none;letter-spacing:.08em;
-  white-space:nowrap;cursor:pointer;
-}
+.nav{position:sticky;top:0;z-index:100;background:rgba(248,247,244,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--black);text-decoration:none;letter-spacing:.08em;white-space:nowrap;cursor:pointer;}
 .nav-logo em{font-style:italic;color:var(--gold);}
-.nav-search{
-  display:flex;align-items:center;gap:.5rem;
-  background:var(--gray-100);border:1px solid var(--gray-200);
-  border-radius:8px;padding:.45rem .9rem;flex:1;max-width:280px;
-}
-.nav-search input{
-  border:none;background:transparent;font-family:'Inter',sans-serif;
-  font-size:.85rem;color:var(--black);outline:none;width:100%;
-}
+.nav-search{display:flex;align-items:center;gap:.5rem;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:8px;padding:.45rem .9rem;flex:1;max-width:280px;}
+.nav-search input{border:none;background:transparent;font-family:'Inter',sans-serif;font-size:.85rem;color:var(--black);outline:none;width:100%;}
 .nav-search input::placeholder{color:var(--gray-400);}
 .nav-search i{color:var(--gray-400);font-size:.82rem;}
 .nav-actions{display:flex;align-items:center;gap:.6rem;}
-.btn-cart{
-  display:flex;align-items:center;gap:.5rem;
-  background:var(--black);color:var(--white);
-  border:none;border-radius:8px;padding:.55rem 1.1rem;
-  font-family:'Inter',sans-serif;font-size:.78rem;
-  font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:background .25s;position:relative;
-}
+.btn-cart{display:flex;align-items:center;gap:.5rem;background:var(--black);color:var(--white);border:none;border-radius:8px;padding:.55rem 1.1rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s;position:relative;}
 .btn-cart:hover{background:#2a2a2a;}
-.cart-badge{
-  background:var(--gold);color:var(--black);
-  width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;
-  display:none;align-items:center;justify-content:center;
-}
+.cart-badge{background:var(--gold);color:var(--black);width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;display:none;align-items:center;justify-content:center;}
 .cart-badge.on{display:flex;}
-.btn-admin{
-  display:flex;align-items:center;gap:.45rem;
-  background:var(--gray-100);border:1px solid var(--gray-200);
-  border-radius:8px;padding:.55rem 1rem;
-  font-family:'Inter',sans-serif;font-size:.75rem;
-  font-weight:500;color:var(--gray-600);letter-spacing:.06em;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-}
-.btn-admin:hover{background:var(--black);color:var(--white);border-color:var(--black);}
-
-@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
-.login-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;
-  display:none;align-items:center;justify-content:center;
-  backdrop-filter:blur(4px);
-}
-.login-overlay.on{display:flex;}
-.login-box{
-  background:var(--white);border-radius:14px;
-  padding:2.5rem 2rem;width:100%;max-width:360px;
-  box-shadow:0 32px 80px rgba(0,0,0,.3);
-  display:flex;flex-direction:column;gap:1.2rem;
-  animation:popIn .25s var(--ease);
-}
-@keyframes popIn{from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);}}
-.login-icon{
-  width:52px;height:52px;background:var(--black);border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:1.3rem;margin:0 auto;
-}
-.login-box h3{
-  font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;
-  text-align:center;
-}
-.login-box p{font-size:.8rem;color:var(--gray-400);text-align:center;line-height:1.5;}
-.login-field{
-  display:flex;flex-direction:column;gap:.4rem;
-}
-.login-field label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600);}
-.login-input-wrap{
-  display:flex;align-items:center;
-  border:1px solid var(--gray-200);border-radius:8px;
-  background:var(--off-white);overflow:hidden;
-  transition:border-color .2s;
-}
-.login-input-wrap:focus-within{border-color:var(--gold);}
-.login-input-wrap input{
-  flex:1;padding:.65rem .9rem;border:none;background:transparent;
-  font-family:'Inter',sans-serif;font-size:.88rem;color:var(--black);outline:none;
-}
-.toggle-pass{
-  background:none;border:none;padding:0 .75rem;color:var(--gray-400);
-  cursor:pointer;font-size:.85rem;transition:color .2s;
-}
-.toggle-pass:hover{color:var(--black);}
-.login-error{
-  font-size:.78rem;color:var(--red);text-align:center;
-  min-height:1.1em;
-}
-.btn-login{
-  width:100%;padding:.85rem;background:var(--black);color:var(--white);
-  border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;
-  font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
-  transition:background .25s;
-}
-.btn-login:hover{background:#2a2a2a;}
-.btn-cancel-login{
-  width:100%;padding:.6rem;background:transparent;border:1px solid var(--gray-200);
-  border-radius:8px;font-family:'Inter',sans-serif;font-size:.75rem;
-  color:var(--gray-400);letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:all .25s;
-}
-.btn-cancel-login:hover{border-color:var(--black);color:var(--black);}
-.admin-logout{
-  display:none;align-items:center;gap:.4rem;
-  background:transparent;border:1px solid rgba(214,59,59,.35);
-  border-radius:8px;padding:.5rem .85rem;
-  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
-  color:var(--red);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
-  transition:all .25s;
-}
+.admin-logout{display:none;align-items:center;gap:.4rem;background:transparent;border:1px solid rgba(214,59,59,.35);border-radius:8px;padding:.5rem .85rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;color:var(--red);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .25s;}
 .admin-logout.on{display:flex;}
 .admin-logout:hover{background:var(--red);color:#fff;border-color:var(--red);}
 
-/* HERO SLIDESHOW */
-.hero{
-  position:relative;width:100%;
-  height:88vh;overflow:hidden;background:var(--black);
-}
-.hero-slide{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  opacity:0;transition:opacity 1.2s ease;
-  transform:scale(1);animation:none;
-}
+/* SYNC INDICATOR */
+.sync-indicator{display:none;align-items:center;gap:.35rem;font-size:.68rem;color:var(--gray-400);letter-spacing:.04em;padding:.4rem .7rem;border-radius:6px;background:var(--gray-100);}
+.sync-indicator.on{display:flex;}
+.sync-indicator.syncing{color:var(--gold);}
+.sync-indicator.synced{color:var(--green);}
+.sync-indicator.error{color:var(--red);}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.sync-indicator.syncing .sync-dot{animation:pulse .8s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* LOGIN */
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:900;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.login-overlay.on{display:flex;}
+.login-box{background:var(--white);border-radius:14px;padding:2.5rem 2rem;width:100%;max-width:360px;box-shadow:0 32px 80px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:1.2rem;animation:popIn .25s var(--ease);}
+@keyframes popIn{from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);}}
+.login-icon{width:52px;height:52px;background:var(--black);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.3rem;margin:0 auto;}
+.login-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;text-align:center;}
+.login-box p{font-size:.8rem;color:var(--gray-400);text-align:center;line-height:1.5;}
+.login-field{display:flex;flex-direction:column;gap:.4rem;}
+.login-field label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600);}
+.login-input-wrap{display:flex;align-items:center;border:1px solid var(--gray-200);border-radius:8px;background:var(--off-white);overflow:hidden;transition:border-color .2s;}
+.login-input-wrap:focus-within{border-color:var(--gold);}
+.login-input-wrap input{flex:1;padding:.65rem .9rem;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--black);outline:none;}
+.toggle-pass{background:none;border:none;padding:0 .75rem;color:var(--gray-400);cursor:pointer;font-size:.85rem;transition:color .2s;}
+.toggle-pass:hover{color:var(--black);}
+.login-error{font-size:.78rem;color:var(--red);text-align:center;min-height:1.1em;}
+.btn-login{width:100%;padding:.85rem;background:var(--black);color:var(--white);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
+.btn-login:hover{background:#2a2a2a;}
+.btn-cancel-login{width:100%;padding:.6rem;background:transparent;border:1px solid var(--gray-200);border-radius:8px;font-family:'Inter',sans-serif;font-size:.75rem;color:var(--gray-400);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.btn-cancel-login:hover{border-color:var(--black);color:var(--black);}
+
+/* HERO */
+.hero{position:relative;width:100%;height:88vh;overflow:hidden;background:var(--black);}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease;transform:scale(1);}
 .hero-slide.active{opacity:1;animation:zoomSlow 8s ease forwards;}
 @keyframes zoomSlow{from{transform:scale(1);}to{transform:scale(1.06);}}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 60%);
-  pointer-events:none;
-}
-.hero-dots{
-  position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
-  display:flex;gap:.5rem;z-index:10;
-}
-.hero-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,.35);border:none;cursor:pointer;
-  transition:background .3s,transform .3s;padding:0;
-}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 60%);pointer-events:none;}
+.hero-dots{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:10;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;transition:background .3s,transform .3s;padding:0;}
 .hero-dot.on{background:var(--gold);transform:scale(1.4);}
-.hero-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
-  z-index:10;width:42px;height:42px;
-  background:rgba(255,255,255,.12);backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.2);border-radius:50%;
-  color:#fff;font-size:.9rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .25s;
-}
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:42px;height:42px;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);border-radius:50%;color:#fff;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s;}
 .hero-arrow:hover{background:rgba(255,255,255,.25);}
 .hero-arrow.prev{left:1.5rem;}
 .hero-arrow.next{right:1.5rem;}
 
-/* PRODUTOS */
+/* SHOP */
 .shop{padding:3rem 2.5rem;}
 .shop-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;gap:1rem;}
 .shop-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;}
 .shop-meta{font-size:.75rem;color:var(--gray-400);letter-spacing:.06em;text-transform:uppercase;}
 .filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;}
-.filter-btn{
-  padding:.4rem .9rem;border-radius:100px;border:1px solid var(--gray-200);
-  background:var(--white);font-family:'Inter',sans-serif;font-size:.75rem;
-  font-weight:500;color:var(--gray-600);cursor:pointer;transition:all .2s;
-}
+.filter-btn{padding:.4rem .9rem;border-radius:100px;border:1px solid var(--gray-200);background:var(--white);font-family:'Inter',sans-serif;font-size:.75rem;font-weight:500;color:var(--gray-600);cursor:pointer;transition:all .2s;}
 .filter-btn:hover,.filter-btn.on{background:var(--black);color:var(--white);border-color:var(--black);}
 
 /* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:1.2rem;
-}
-.card{
-  background:var(--white);border-radius:10px;overflow:hidden;
-  cursor:pointer;border:1px solid var(--gray-200);
-  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
-  position:relative;
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;}
+.card{background:var(--white);border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid var(--gray-200);transition:transform .35s var(--ease),box-shadow .35s var(--ease);position:relative;}
 .card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);}
 .card.sem-estoque{opacity:.7;}
 .card-img-wrap{position:relative;overflow:hidden;}
-.card-img{
-  width:100%;aspect-ratio:3/4;object-fit:cover;display:block;
-  transition:transform .55s var(--ease);
-}
+.card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .55s var(--ease);}
 .card:hover .card-img{transform:scale(1.04);}
-.card-badge{
-  position:absolute;top:.8rem;left:.8rem;
-  background:var(--black);color:var(--gold);
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.3rem .65rem;border-radius:4px;font-weight:600;
-}
+.card-badge{position:absolute;top:.8rem;left:.8rem;background:var(--black);color:var(--gold);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .65rem;border-radius:4px;font-weight:600;}
 .badge-sem{background:var(--red)!important;color:#fff!important;}
-.card-hover-btn{
-  position:absolute;bottom:0;left:0;right:0;
-  background:rgba(17,17,17,.88);color:var(--white);
-  text-align:center;padding:.8rem;
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
-  opacity:0;transform:translateY(4px);transition:all .28s var(--ease);
-}
+.card-hover-btn{position:absolute;bottom:0;left:0;right:0;background:rgba(17,17,17,.88);color:var(--white);text-align:center;padding:.8rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:0;transform:translateY(4px);transition:all .28s var(--ease);}
 .card:hover .card-hover-btn{opacity:1;transform:translateY(0);}
 .sem-estoque .card-hover-btn{background:rgba(214,59,59,.88);}
 .card-body{padding:.9rem 1rem 1.1rem;}
@@ -291,469 +125,207 @@ body{background:var(--black);color:var(--black);font-family:'Inter',sans-serif;o
 .card-desc{font-size:.75rem;color:var(--gray-400);line-height:1.5;margin-bottom:.7rem;}
 .card-row{display:flex;align-items:center;justify-content:space-between;}
 .card-price{font-family:'Playfair Display',serif;font-size:1.2rem;}
-.card-stock{
-  font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  padding:.25rem .6rem;border-radius:4px;
-}
+.card-stock{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .6rem;border-radius:4px;}
 .stock-ok{background:#E8F7EF;color:#1a7a45;}
 .stock-low{background:#FEF3E2;color:#b36b00;}
 .stock-out{background:#FDE8E8;color:#c0392b;}
-.empty-state{
-  grid-column:1/-1;text-align:center;padding:4rem;color:var(--gray-400);
-}
+.empty-state{grid-column:1/-1;text-align:center;padding:4rem;color:var(--gray-400);}
 .empty-state i{font-size:2rem;margin-bottom:1rem;display:block;opacity:.3;}
 
 /* FOOTER */
-footer{
-  background:var(--black);color:rgba(255,255,255,.35);
-  padding:1.8rem 2.5rem;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:.73rem;letter-spacing:.06em;flex-wrap:wrap;gap:.5rem;
-}
+footer{background:var(--black);color:rgba(255,255,255,.35);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.73rem;letter-spacing:.06em;flex-wrap:wrap;gap:.5rem;}
 footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--white);}
 
-/* ========= PAINEL CARRINHO ========= */
-.overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
+/* CARRINHO */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;opacity:0;pointer-events:none;transition:opacity .35s;}
 .overlay.on{opacity:1;pointer-events:all;}
-.drawer{
-  position:fixed;top:0;right:-500px;bottom:0;width:460px;
-  background:var(--off-white);z-index:500;
-  display:flex;flex-direction:column;
-  transition:right .38s var(--ease);
-  box-shadow:-24px 0 64px rgba(0,0,0,.18);
-}
+.drawer{position:fixed;top:0;right:-500px;bottom:0;width:460px;background:var(--off-white);z-index:500;display:flex;flex-direction:column;transition:right .38s var(--ease);box-shadow:-24px 0 64px rgba(0,0,0,.18);}
 .drawer.on{right:0;}
-.drawer-head{
-  padding:1.5rem 1.8rem;border-bottom:1px solid var(--gray-200);
-  display:flex;align-items:center;justify-content:space-between;
-}
+.drawer-head{padding:1.5rem 1.8rem;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;}
 .drawer-head h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;}
-.btn-close{
-  width:34px;height:34px;border:1px solid var(--gray-200);background:none;
-  border-radius:50%;cursor:pointer;font-size:.85rem;color:var(--gray-400);
-  display:flex;align-items:center;justify-content:center;transition:all .2s;
-}
+.btn-close{width:34px;height:34px;border:1px solid var(--gray-200);background:none;border-radius:50%;cursor:pointer;font-size:.85rem;color:var(--gray-400);display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .btn-close:hover{background:var(--black);color:var(--white);border-color:var(--black);}
 .drawer-body{flex:1;overflow-y:auto;padding:1.2rem 1.8rem;}
-.cart-empty-msg{
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;height:100%;gap:.8rem;color:var(--gray-400);text-align:center;
-}
+.cart-empty-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:.8rem;color:var(--gray-400);text-align:center;}
 .cart-empty-msg i{font-size:2.2rem;opacity:.2;}
 .cart-empty-msg p{font-size:.85rem;}
-.cart-item{
-  display:flex;gap:.9rem;padding:.9rem 0;
-  border-bottom:1px solid var(--gray-200);
-}
-.cart-img{
-  width:68px;height:85px;object-fit:cover;border-radius:6px;
-  flex-shrink:0;background:var(--gray-100);
-}
+.cart-item{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--gray-200);}
+.cart-img{width:68px;height:85px;object-fit:cover;border-radius:6px;flex-shrink:0;background:var(--gray-100);}
 .ci-info{flex:1;}
 .ci-name{font-size:.85rem;font-weight:600;margin-bottom:.2rem;}
 .ci-meta{font-size:.73rem;color:var(--gray-400);margin-bottom:.55rem;}
 .ci-controls{display:flex;align-items:center;gap:.5rem;}
-.qty-btn{
-  width:24px;height:24px;border:1px solid var(--gray-200);
-  background:none;border-radius:5px;cursor:pointer;
-  font-size:.9rem;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
+.qty-btn{width:24px;height:24px;border:1px solid var(--gray-200);background:none;border-radius:5px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .qty-btn:hover{background:var(--black);color:var(--white);border-color:var(--black);}
 .qty-n{font-size:.82rem;font-weight:600;min-width:18px;text-align:center;}
-.ci-rm{
-  background:none;border:none;cursor:pointer;color:rgba(154,150,144,.5);
-  margin-left:auto;font-size:.82rem;transition:color .2s;
-}
+.ci-rm{background:none;border:none;cursor:pointer;color:rgba(154,150,144,.5);margin-left:auto;font-size:.82rem;transition:color .2s;}
 .ci-rm:hover{color:var(--red);}
 .ci-price{font-family:'Playfair Display',serif;font-size:1.05rem;align-self:flex-start;padding-top:.15rem;white-space:nowrap;}
 .drawer-foot{padding:1.3rem 1.8rem;border-top:1px solid var(--gray-200);}
 .sub-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.3rem;}
 .sub-row span{font-size:.75rem;color:var(--gray-400);letter-spacing:.06em;text-transform:uppercase;}
 .sub-row strong{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:400;}
-.btn-wpp{
-  width:100%;padding:.95rem;background:#25D366;color:#fff;
-  border:none;border-radius:8px;
-  font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:.6rem;
-  transition:background .25s;
-}
+.btn-wpp{width:100%;padding:.95rem;background:#25D366;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.6rem;transition:background .25s;}
 .btn-wpp:hover{background:#1ebe59;}
 .btn-wpp i{font-size:1rem;}
-.btn-continuar{
-  width:100%;padding:.7rem;margin-top:.6rem;
-  background:transparent;border:1px solid var(--gray-200);border-radius:8px;
-  font-family:'Inter',sans-serif;font-size:.75rem;color:var(--gray-400);
-  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;
-}
+.btn-continuar{width:100%;padding:.7rem;margin-top:.6rem;background:transparent;border:1px solid var(--gray-200);border-radius:8px;font-family:'Inter',sans-serif;font-size:.75rem;color:var(--gray-400);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
 .btn-continuar:hover{border-color:var(--black);color:var(--black);}
 
-/* ========= MODAL PRODUTO ========= */
-.modal{
-  position:fixed;inset:0;background:var(--off-white);z-index:600;
-  display:none;overflow-y:auto;
-}
+/* MODAL PRODUTO */
+.modal{position:fixed;inset:0;background:var(--off-white);z-index:600;display:none;overflow-y:auto;}
 .modal.on{display:block;}
 .modal-grid{display:grid;grid-template-columns:1.1fr .9fr;min-height:100vh;}
-.modal-img-side{
-  background:var(--gray-100);position:sticky;top:0;height:100vh;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  padding:2.5rem;
-}
-.modal-main-img{
-  width:100%;max-width:460px;height:72vh;
-  object-fit:cover;border-radius:8px;
-}
+.modal-img-side{background:var(--gray-100);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2.5rem;}
+.modal-main-img{width:100%;max-width:460px;height:72vh;object-fit:cover;border-radius:8px;}
 .modal-thumbs{display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap;justify-content:center;}
-.modal-thumbs img{
-  width:60px;height:76px;object-fit:cover;border-radius:5px;
-  cursor:pointer;border:2px solid transparent;transition:border-color .2s;
-}
+.modal-thumbs img{width:60px;height:76px;object-fit:cover;border-radius:5px;cursor:pointer;border:2px solid transparent;transition:border-color .2s;}
 .modal-thumbs img.on{border-color:var(--black);}
 .modal-info{padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;}
-.modal-eyebrow{
-  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;
-}
+.modal-eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
 .modal-eyebrow::before{content:'';width:18px;height:1px;background:var(--gold);}
 .modal-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,2.8rem);font-weight:400;line-height:1.18;margin-bottom:.7rem;}
 .modal-price{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:1.3rem;}
 .modal-desc{font-size:.88rem;line-height:1.75;color:var(--gray-600);margin-bottom:1.8rem;}
 .size-lbl{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.7rem;font-weight:500;}
 .sizes{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.8rem;}
-.sz{
-  width:50px;height:50px;border:1px solid var(--gray-200);
-  background:transparent;border-radius:6px;
-  font-family:'Inter',sans-serif;font-size:.8rem;cursor:pointer;
-  transition:all .2s;color:var(--black);
-}
+.sz{width:50px;height:50px;border:1px solid var(--gray-200);background:transparent;border-radius:6px;font-family:'Inter',sans-serif;font-size:.8rem;cursor:pointer;transition:all .2s;color:var(--black);}
 .sz:hover,.sz.on{background:var(--black);color:var(--white);border-color:var(--black);}
-.stock-info-modal{
-  font-size:.75rem;font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;margin-bottom:1.3rem;padding:.5rem .8rem;
-  border-radius:6px;display:inline-flex;align-items:center;gap:.4rem;
-}
-.btn-add{
-  width:100%;padding:1rem;background:var(--black);color:var(--white);
-  border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.8rem;
-  font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:.7rem;transition:all .3s;
-}
+.stock-info-modal{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.3rem;padding:.5rem .8rem;border-radius:6px;display:inline-flex;align-items:center;gap:.4rem;}
+.btn-add{width:100%;padding:1rem;background:var(--black);color:var(--white);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.7rem;transition:all .3s;}
 .btn-add:hover{background:#2a2a2a;}
 .btn-add.ok{background:var(--green);}
 .btn-add:disabled{background:var(--red);cursor:not-allowed;}
-.btn-fechar-modal{
-  position:fixed;top:1.2rem;right:1.2rem;
-  width:44px;height:44px;background:var(--black);color:var(--white);
-  border:none;border-radius:50%;font-size:.95rem;cursor:pointer;z-index:700;
-  display:flex;align-items:center;justify-content:center;transition:background .25s;
-}
+.btn-fechar-modal{position:fixed;top:1.2rem;right:1.2rem;width:44px;height:44px;background:var(--black);color:var(--white);border:none;border-radius:50%;font-size:.95rem;cursor:pointer;z-index:700;display:flex;align-items:center;justify-content:center;transition:background .25s;}
 .btn-fechar-modal:hover{background:#333;}
 
-/* ========= PAINEL ADMIN ========= */
-.admin-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;
-  display:none;align-items:center;justify-content:center;padding:1rem;
-}
+/* ===== PAINEL ADMIN ===== */
+.admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;display:none;align-items:center;justify-content:center;padding:1rem;}
 .admin-overlay.on{display:flex;}
-.admin-panel{
-  background:var(--white);border-radius:14px;
-  width:100%;max-width:960px;max-height:92vh;
-  display:flex;flex-direction:column;overflow:hidden;
-  box-shadow:0 32px 80px rgba(0,0,0,.3);
-}
-.admin-head{
-  padding:1.3rem 1.8rem;border-bottom:1px solid var(--gray-200);
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-}
+.admin-panel{background:var(--white);border-radius:14px;width:100%;max-width:980px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.3);}
+.admin-head{padding:1.3rem 1.8rem;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .admin-head h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;}
 .admin-tabs{display:flex;gap:.3rem;}
-.atab{
-  padding:.45rem .9rem;border-radius:6px;border:1px solid var(--gray-200);
-  background:none;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:500;
-  color:var(--gray-600);cursor:pointer;transition:all .2s;
-}
+.atab{padding:.45rem .9rem;border-radius:6px;border:1px solid var(--gray-200);background:none;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:500;color:var(--gray-600);cursor:pointer;transition:all .2s;}
 .atab.on{background:var(--black);color:var(--white);border-color:var(--black);}
 .admin-body{flex:1;overflow-y:auto;padding:1.5rem 1.8rem;}
 
-/* LISTA PRODUTOS ADMIN */
-.admin-product-list{display:flex;flex-direction:column;gap:.7rem;}
-.adm-item{
-  display:flex;align-items:flex-start;gap:1rem;
-  padding:.8rem 1rem;border:1px solid var(--gray-200);border-radius:8px;
-  background:var(--off-white);flex-wrap:wrap;
+/* ===== PASTE IMAGE ZONE ===== */
+.paste-zone{
+  border:2px dashed var(--gray-200);border-radius:10px;
+  padding:1.2rem;text-align:center;cursor:pointer;
+  transition:all .2s;position:relative;background:var(--off-white);
+  min-height:100px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.4rem;
 }
+.paste-zone:hover,.paste-zone.drag-over{border-color:var(--gold);background:#fffbf3;}
+.paste-zone.has-img{border-style:solid;border-color:var(--green);}
+.paste-zone .pz-icon{font-size:1.6rem;color:var(--gray-200);}
+.paste-zone.has-img .pz-icon{color:var(--green);}
+.paste-zone .pz-title{font-size:.75rem;font-weight:600;color:var(--gray-400);letter-spacing:.04em;}
+.paste-zone.has-img .pz-title{color:var(--green);}
+.paste-zone .pz-hint{font-size:.68rem;color:var(--gray-200);line-height:1.4;}
+.paste-zone img.pz-preview{
+  width:100%;max-height:160px;object-fit:contain;border-radius:6px;
+  margin-bottom:.4rem;
+}
+.paste-zone .pz-actions{display:flex;gap:.4rem;margin-top:.3rem;flex-wrap:wrap;justify-content:center;}
+.pz-btn{padding:.3rem .7rem;border:1px solid var(--gray-200);border-radius:5px;background:var(--white);font-size:.68rem;font-weight:500;cursor:pointer;color:var(--gray-600);transition:all .2s;font-family:'Inter',sans-serif;}
+.pz-btn:hover{background:var(--black);color:var(--white);border-color:var(--black);}
+.pz-btn.danger{border-color:rgba(214,59,59,.35);color:var(--red);}
+.pz-btn.danger:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.pz-sep{display:flex;align-items:center;gap:.5rem;width:100%;margin:.4rem 0;}
+.pz-sep span{font-size:.62rem;color:var(--gray-200);white-space:nowrap;}
+.pz-sep::before,.pz-sep::after{content:'';flex:1;height:1px;background:var(--gray-200);}
+.pz-url-input{
+  width:100%;padding:.45rem .7rem;border:1px solid var(--gray-200);border-radius:6px;
+  font-family:'Inter',sans-serif;font-size:.75rem;color:var(--black);
+  background:var(--white);transition:border-color .2s;
+}
+.pz-url-input:focus{outline:none;border-color:var(--gold);}
+.pz-url-input::placeholder{color:var(--gray-200);}
+.paste-focus-hint{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(200,150,62,.08);border-radius:8px;
+  font-size:.75rem;font-weight:600;color:var(--gold);
+  pointer-events:none;opacity:0;transition:opacity .2s;
+}
+.paste-zone.focused .paste-focus-hint{opacity:1;}
+
+/* LISTA ADMIN */
+.admin-product-list{display:flex;flex-direction:column;gap:.7rem;}
+.adm-item{display:flex;align-items:flex-start;gap:1rem;padding:.8rem 1rem;border:1px solid var(--gray-200);border-radius:8px;background:var(--off-white);flex-wrap:wrap;}
 .adm-img{width:52px;height:64px;object-fit:cover;border-radius:5px;flex-shrink:0;background:var(--gray-200);}
 .adm-info{flex:1;min-width:0;}
 .adm-name{font-size:.85rem;font-weight:600;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .adm-price{font-size:.75rem;color:var(--gray-400);}
 .adm-stock-wrap{display:flex;align-items:center;gap:.5rem;}
 .adm-stock-wrap label{font-size:.72rem;color:var(--gray-400);white-space:nowrap;}
-.adm-stock-input{
-  width:64px;padding:.35rem .5rem;border:1px solid var(--gray-200);border-radius:5px;
-  font-family:'Inter',sans-serif;font-size:.82rem;text-align:center;
-  background:var(--white);color:var(--black);
-}
+.adm-stock-input{width:64px;padding:.35rem .5rem;border:1px solid var(--gray-200);border-radius:5px;font-family:'Inter',sans-serif;font-size:.82rem;text-align:center;background:var(--white);color:var(--black);}
 .adm-stock-input:focus{outline:none;border-color:var(--gold);}
-.btn-salvar-stock{
-  padding:.35rem .75rem;background:var(--green);color:#fff;
-  border:none;border-radius:5px;font-size:.72rem;font-weight:600;
-  cursor:pointer;transition:background .2s;white-space:nowrap;
-}
+.btn-salvar-stock{padding:.35rem .75rem;background:var(--green);color:#fff;border:none;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;transition:background .2s;white-space:nowrap;}
 .btn-salvar-stock:hover{background:#1a8a49;}
 .adm-actions{display:flex;gap:.4rem;align-items:center;}
-.btn-adm-del{
-  padding:.35rem .65rem;background:transparent;
-  border:1px solid rgba(214,59,59,.35);border-radius:5px;
-  color:var(--red);font-size:.75rem;cursor:pointer;transition:all .2s;
-}
+.btn-adm-del{padding:.35rem .65rem;background:transparent;border:1px solid rgba(214,59,59,.35);border-radius:5px;color:var(--red);font-size:.75rem;cursor:pointer;transition:all .2s;}
 .btn-adm-del:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.btn-adm-edit{padding:.35rem .65rem;background:transparent;border:1px solid var(--gray-200);border-radius:5px;color:var(--gray-600);font-size:.75rem;cursor:pointer;transition:all .2s;}
+.btn-adm-edit:hover{background:var(--black);color:var(--white);border-color:var(--black);}
 
-/* FOTOS EXTRAS ADMIN */
-.adm-fotos-section{
-  width:100%;margin-top:.75rem;
-  padding-top:.75rem;border-top:1px solid var(--gray-200);
-}
-.adm-fotos-label{
-  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gray-400);margin-bottom:.5rem;
-  display:flex;align-items:center;gap:.4rem;
-}
+/* Fotos extras admin */
+.adm-fotos-section{width:100%;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--gray-200);}
+.adm-fotos-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;}
 .adm-fotos-label i{font-size:.75rem;color:var(--gold);}
-.adm-fotos-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;
-}
-.adm-foto-slot{
-  display:flex;flex-direction:column;gap:.3rem;
-}
-.adm-foto-slot-num{
-  font-size:.6rem;color:var(--gray-400);font-weight:500;letter-spacing:.06em;
-  text-transform:uppercase;text-align:center;
-}
-.adm-foto-preview{
-  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:5px;
-  background:var(--gray-100);border:1px dashed var(--gray-200);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;position:relative;
-}
-.adm-foto-preview img{
-  width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-  border-radius:4px;
-}
-.adm-foto-preview .no-img{
-  display:flex;flex-direction:column;align-items:center;gap:.2rem;
-  color:var(--gray-200);font-size:.62rem;
-}
-.adm-foto-preview .no-img i{font-size:1.1rem;}
-.adm-foto-input{
-  width:100%;padding:.3rem .4rem;border:1px solid var(--gray-200);border-radius:4px;
-  font-family:'Inter',sans-serif;font-size:.68rem;color:var(--black);
-  background:var(--white);transition:border-color .2s;
-}
-.adm-foto-input:focus{outline:none;border-color:var(--gold);}
-.adm-foto-input::placeholder{color:var(--gray-200);font-size:.65rem;}
-.btn-salvar-fotos{
-  margin-top:.6rem;padding:.4rem .8rem;background:var(--black);color:#fff;
-  border:none;border-radius:5px;font-size:.72rem;font-weight:600;
-  cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.35rem;
-}
-.btn-salvar-fotos:hover{background:#333;}
-.btn-toggle-fotos{
-  padding:.3rem .65rem;background:var(--gray-100);
-  border:1px solid var(--gray-200);border-radius:5px;
-  font-size:.7rem;font-weight:500;color:var(--gray-600);
-  cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem;
-  white-space:nowrap;
-}
+.adm-fotos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;}
+.btn-toggle-fotos{padding:.3rem .65rem;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:5px;font-size:.7rem;font-weight:500;color:var(--gray-600);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem;white-space:nowrap;}
 .btn-toggle-fotos:hover{background:var(--black);color:var(--white);border-color:var(--black);}
-.fotos-count-badge{
-  background:var(--gold);color:var(--black);
-  font-size:.6rem;font-weight:700;padding:.1rem .4rem;border-radius:10px;
-}
+.fotos-count-badge{background:var(--gold);color:var(--black);font-size:.6rem;font-weight:700;padding:.1rem .4rem;border-radius:10px;}
 
 /* FORM NOVO PRODUTO */
 .add-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-field{display:flex;flex-direction:column;gap:.4rem;}
 .form-field.full{grid-column:1/-1;}
 .form-field label{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-600);}
-.form-field input,
-.form-field textarea,
-.form-field select{
-  padding:.6rem .8rem;border:1px solid var(--gray-200);border-radius:7px;
-  font-family:'Inter',sans-serif;font-size:.85rem;color:var(--black);
-  background:var(--off-white);transition:border-color .2s;
-  resize:vertical;
-}
-.form-field input:focus,
-.form-field textarea:focus,
-.form-field select:focus{outline:none;border-color:var(--gold);}
-.badge-preview{
-  display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem;
-}
-.bp-opt{
-  padding:.3rem .65rem;border-radius:100px;border:1px solid var(--gray-200);
-  font-size:.72rem;font-weight:500;cursor:pointer;transition:all .2s;color:var(--gray-600);
-}
+.form-field input,.form-field textarea,.form-field select{padding:.6rem .8rem;border:1px solid var(--gray-200);border-radius:7px;font-family:'Inter',sans-serif;font-size:.85rem;color:var(--black);background:var(--off-white);transition:border-color .2s;resize:vertical;}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--gold);}
+.badge-preview{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem;}
+.bp-opt{padding:.3rem .65rem;border-radius:100px;border:1px solid var(--gray-200);font-size:.72rem;font-weight:500;cursor:pointer;transition:all .2s;color:var(--gray-600);}
 .bp-opt.on{background:var(--black);color:var(--white);border-color:var(--black);}
-.btn-add-product{
-  grid-column:1/-1;padding:.85rem;background:var(--black);color:var(--white);
-  border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;
-  font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
-  transition:background .25s;
-}
+.btn-add-product{grid-column:1/-1;padding:.85rem;background:var(--black);color:var(--white);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
 .btn-add-product:hover{background:#333;}
 .size-input-help{font-size:.7rem;color:var(--gray-400);margin-top:.25rem;}
 
-/* Fotos extras no form novo */
-.fotos-extras-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;
-  margin-top:.3rem;
-}
-.foto-extra-slot{display:flex;flex-direction:column;gap:.25rem;}
-.foto-extra-preview{
-  width:100%;aspect-ratio:3/4;background:var(--gray-100);border:1px dashed var(--gray-200);
-  border-radius:6px;overflow:hidden;position:relative;display:flex;
-  align-items:center;justify-content:center;
-}
-.foto-extra-preview img{
-  width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-}
-.foto-extra-preview .ph{
-  color:var(--gray-200);font-size:.9rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;
-}
-.foto-extra-preview .ph span{font-size:.6rem;color:var(--gray-200);}
-.foto-extra-num{
-  font-size:.65rem;color:var(--gray-400);font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;text-align:center;
-}
-
-/* ========= MODAL EDITAR PRODUTO ========= */
-.edit-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;
-  display:none;align-items:center;justify-content:center;padding:1rem;
-  backdrop-filter:blur(4px);
-}
+/* MODAL EDITAR */
+.edit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
 .edit-overlay.on{display:flex;}
-.edit-panel{
-  background:var(--white);border-radius:14px;
-  width:100%;max-width:760px;max-height:92vh;
-  display:flex;flex-direction:column;overflow:hidden;
-  box-shadow:0 32px 80px rgba(0,0,0,.4);
-  animation:popIn .22s var(--ease);
-}
-.edit-head{
-  padding:1.2rem 1.6rem;border-bottom:1px solid var(--gray-200);
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-  background:var(--black);
-}
-.edit-head h3{
-  font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;
-  color:var(--white);display:flex;align-items:center;gap:.6rem;
-}
+.edit-panel{background:var(--white);border-radius:14px;width:100%;max-width:820px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4);animation:popIn .22s var(--ease);}
+.edit-head{padding:1.2rem 1.6rem;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--black);}
+.edit-head h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--white);display:flex;align-items:center;gap:.6rem;}
 .edit-head h3 i{color:var(--gold);font-size:1rem;}
 .edit-body{flex:1;overflow-y:auto;padding:1.5rem 1.6rem;}
 .edit-form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
 .edit-field{display:flex;flex-direction:column;gap:.35rem;}
 .edit-field.full{grid-column:1/-1;}
-.edit-field label{
-  font-size:.68rem;font-weight:600;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--gray-600);
-}
-.edit-field input,
-.edit-field textarea{
-  padding:.55rem .75rem;border:1px solid var(--gray-200);border-radius:7px;
-  font-family:'Inter',sans-serif;font-size:.84rem;color:var(--black);
-  background:var(--off-white);transition:border-color .2s;resize:vertical;
-}
-.edit-field input:focus,
-.edit-field textarea:focus{outline:none;border-color:var(--gold);}
-.edit-img-preview{
-  width:100%;height:160px;object-fit:cover;border-radius:7px;
-  background:var(--gray-100);margin-top:.3rem;display:block;
-  border:1px solid var(--gray-200);
-}
+.edit-field label{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600);}
+.edit-field input,.edit-field textarea{padding:.55rem .75rem;border:1px solid var(--gray-200);border-radius:7px;font-family:'Inter',sans-serif;font-size:.84rem;color:var(--black);background:var(--off-white);transition:border-color .2s;resize:vertical;}
+.edit-field input:focus,.edit-field textarea:focus{outline:none;border-color:var(--gold);}
 .edit-badge-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.2rem;}
-.edit-bp{
-  padding:.28rem .6rem;border-radius:100px;border:1px solid var(--gray-200);
-  font-size:.7rem;font-weight:500;cursor:pointer;transition:all .2s;color:var(--gray-600);
-}
+.edit-bp{padding:.28rem .6rem;border-radius:100px;border:1px solid var(--gray-200);font-size:.7rem;font-weight:500;cursor:pointer;transition:all .2s;color:var(--gray-600);}
 .edit-bp.on{background:var(--black);color:var(--white);border-color:var(--black);}
-.edit-section-title{
-  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gray-400);margin-bottom:.5rem;padding-top:.4rem;
-  display:flex;align-items:center;gap:.4rem;
-}
+.edit-section-title{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:.5rem;padding-top:.4rem;display:flex;align-items:center;gap:.4rem;}
 .edit-section-title i{color:var(--gold);}
 .edit-fotos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;}
-.edit-foto-slot{display:flex;flex-direction:column;gap:.25rem;}
-.edit-foto-num{
-  font-size:.62rem;color:var(--gray-400);font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;text-align:center;
-}
-.edit-foto-prev{
-  width:100%;aspect-ratio:3/4;background:var(--gray-100);
-  border:1px dashed var(--gray-200);border-radius:6px;
-  overflow:hidden;position:relative;display:flex;
-  align-items:center;justify-content:center;
-}
-.edit-foto-prev img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-.edit-foto-prev .ph{color:var(--gray-200);font-size:.85rem;display:flex;flex-direction:column;align-items:center;gap:.15rem;}
-.edit-foto-prev .ph span{font-size:.58rem;color:var(--gray-200);}
-.edit-foot{
-  padding:1rem 1.6rem;border-top:1px solid var(--gray-200);
-  display:flex;gap:.6rem;justify-content:flex-end;flex-shrink:0;
-}
-.btn-edit-cancel{
-  padding:.65rem 1.2rem;background:transparent;border:1px solid var(--gray-200);
-  border-radius:7px;font-family:'Inter',sans-serif;font-size:.78rem;
-  color:var(--gray-400);cursor:pointer;transition:all .2s;
-}
+.edit-foot{padding:1rem 1.6rem;border-top:1px solid var(--gray-200);display:flex;gap:.6rem;justify-content:flex-end;flex-shrink:0;}
+.btn-edit-cancel{padding:.65rem 1.2rem;background:transparent;border:1px solid var(--gray-200);border-radius:7px;font-family:'Inter',sans-serif;font-size:.78rem;color:var(--gray-400);cursor:pointer;transition:all .2s;}
 .btn-edit-cancel:hover{border-color:var(--black);color:var(--black);}
-.btn-edit-save{
-  padding:.65rem 1.6rem;background:var(--black);color:var(--white);
-  border:none;border-radius:7px;font-family:'Inter',sans-serif;
-  font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.5rem;
-}
+.btn-edit-save{padding:.65rem 1.6rem;background:var(--black);color:var(--white);border:none;border-radius:7px;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.5rem;}
 .btn-edit-save:hover{background:#2a2a2a;}
-.btn-adm-edit{
-  padding:.35rem .65rem;background:transparent;
-  border:1px solid var(--gray-200);border-radius:5px;
-  color:var(--gray-600);font-size:.75rem;cursor:pointer;transition:all .2s;
-}
-.btn-adm-edit:hover{background:var(--black);color:var(--white);border-color:var(--black);}
-@media(max-width:600px){
-  .edit-form{grid-template-columns:1fr;}
-  .edit-field.full{grid-column:1;}
-  .edit-fotos-grid{grid-template-columns:repeat(2,1fr);}
-}
 
 /* TOAST */
-.toast{
-  position:fixed;bottom:1.8rem;left:50%;
-  transform:translateX(-50%) translateY(10px);
-  background:var(--black);color:var(--white);
-  padding:.65rem 1.4rem;border-radius:100px;
-  font-size:.8rem;font-weight:500;letter-spacing:.04em;
-  opacity:0;transition:all .3s var(--ease);
-  z-index:9999;pointer-events:none;white-space:nowrap;
-  border:1px solid rgba(200,150,62,.3);
-}
+.toast{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--black);color:var(--white);padding:.65rem 1.4rem;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.04em;opacity:0;transition:all .3s var(--ease);z-index:9999;pointer-events:none;white-space:nowrap;border:1px solid rgba(200,150,62,.3);}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* WPP FLOAT */
-.wpp-float{
-  position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;
-  width:52px;height:52px;background:#25D366;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.4rem;color:#fff;cursor:pointer;
-  box-shadow:0 4px 20px rgba(37,211,102,.4);
-  transition:transform .25s,box-shadow .25s;text-decoration:none;
-}
+/* WPP */
+.wpp-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;}
 .wpp-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.5);}
 
 /* RESPONSIVE */
@@ -772,7 +344,10 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
   .form-field.full{grid-column:1;}
   .btn-add-product{grid-column:1;}
   .adm-fotos-grid{grid-template-columns:repeat(2,1fr);}
-  .fotos-extras-grid{grid-template-columns:repeat(2,1fr);}
+  .edit-form{grid-template-columns:1fr;}
+  .edit-field.full{grid-column:1;}
+  .edit-fotos-grid{grid-template-columns:repeat(2,1fr);}
+  .sync-indicator span{display:none;}
 }
 @media(max-width:480px){
   .grid{gap:.8rem;}
@@ -793,13 +368,14 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
       <span>Entrar na loja</span>
       <i class="fa-solid fa-arrow-right"></i>
     </button>
+    <div class="splash-loading" id="splashLoading">
+      <i class="fa-solid fa-circle-notch fa-spin"></i> Carregando catálogo...
+    </div>
   </div>
 </section>
 
 <!-- LOJA -->
 <section id="loja">
-
-  <!-- NAV -->
   <nav class="nav">
     <a class="nav-logo" id="navLogo" onclick="logoClick()">F<em>2</em> Store</a>
     <div class="nav-search">
@@ -807,9 +383,13 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
       <input type="text" placeholder="Pesquisar produtos..." id="searchInput" oninput="buscar()">
     </div>
     <div class="nav-actions">
+      <!-- Sync indicator -->
+      <div class="sync-indicator" id="syncIndicator">
+        <div class="sync-dot"></div>
+        <span id="syncText">Sincronizado</span>
+      </div>
       <button class="admin-logout" id="btnLogout" onclick="logout()">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Sair do painel</span>
+        <i class="fa-solid fa-right-from-bracket"></i><span>Sair do painel</span>
       </button>
       <button class="btn-cart" onclick="abrirCarrinho()">
         <i class="fa-solid fa-bag-shopping"></i>
@@ -819,7 +399,6 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
     </div>
   </nav>
 
-  <!-- HERO SLIDESHOW -->
   <div class="hero" id="hero">
     <div class="hero-overlay"></div>
     <button class="hero-arrow prev" onclick="slidePrev()"><i class="fa-solid fa-chevron-left"></i></button>
@@ -827,7 +406,6 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
     <div class="hero-dots" id="heroDots"></div>
   </div>
 
-  <!-- SHOP -->
   <div class="shop">
     <div class="shop-top">
       <h2 class="shop-title">Todos os produtos</h2>
@@ -890,7 +468,7 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
       <label>Senha</label>
       <div class="login-input-wrap">
         <input type="password" id="senhaInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')verificarSenha()">
-        <button class="toggle-pass" onclick="toggleVerSenha()" id="togglePassBtn" tabindex="-1">
+        <button class="toggle-pass" onclick="toggleVerSenha()" tabindex="-1">
           <i class="fa-regular fa-eye" id="eyeIcon"></i>
         </button>
       </div>
@@ -914,11 +492,16 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
         <button onclick="resetarProdutos()" style="padding:.45rem .8rem;border-radius:6px;border:1px solid var(--gray-200);background:none;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--gray-400);cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='#D63B3B';this.style.color='#D63B3B'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-400)'">
           <i class="fa-solid fa-rotate-left"></i> Restaurar padrão
         </button>
+        <button onclick="exportarHTML()" style="padding:.45rem .9rem;border-radius:6px;border:none;background:var(--gold);font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;color:var(--black);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.35rem;" onmouseover="this.style.background='#b5832e'" onmouseout="this.style.background='var(--gold)'">
+          <i class="fa-solid fa-download"></i> Salvar arquivo
+        </button>
         <button class="btn-close" onclick="fecharAdmin()"><i class="fa-solid fa-xmark"></i></button>
       </div>
     </div>
     <div class="admin-body">
+      <!-- ABA LISTA -->
       <div id="adminLista"></div>
+      <!-- ABA NOVO PRODUTO -->
       <div id="adminNovo" style="display:none">
         <div class="add-form" id="addForm">
           <div class="form-field">
@@ -927,16 +510,31 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
           </div>
           <div class="form-field">
             <label>Preço (R$) *</label>
-            <input type="number" id="fPreco" placeholder="Ex: 149" min="0" step="0.01">
+            <input type="number" id="fPreco" placeholder="Ex: 149.90" min="0" step="0.01">
           </div>
           <div class="form-field full">
             <label>Descrição</label>
             <textarea id="fDesc" rows="3" placeholder="Descrição breve do produto..."></textarea>
           </div>
-          <div class="form-field">
-            <label>URL da imagem principal *</label>
-            <input type="url" id="fImg" placeholder="https://..." oninput="previewFotoExtra('fImg','prev-main')">
+
+          <!-- IMAGEM PRINCIPAL (com paste) -->
+          <div class="form-field full">
+            <label><i class="fa-solid fa-image" style="color:var(--gold);margin-right:.3rem"></i>Imagem principal *</label>
+            <div class="paste-zone" id="pz-main" tabindex="0"
+              onclick="focarPasteZone('pz-main')"
+              ondragover="dragOver(event,'pz-main')"
+              ondragleave="dragLeave('pz-main')"
+              ondrop="dropZone(event,'pz-main','img-main')">
+              <div class="paste-focus-hint">Ctrl+V para colar imagem</div>
+              <i class="fa-regular fa-image pz-icon"></i>
+              <div class="pz-title">Foto Principal</div>
+              <div class="pz-hint">Clique aqui e pressione Ctrl+V para colar foto do WhatsApp<br>ou arraste uma imagem</div>
+              <div class="pz-sep"><span>ou cole a URL</span></div>
+              <input class="pz-url-input" type="url" id="img-main-url" placeholder="https://..." oninput="urlParaZone('img-main-url','pz-main','img-main')" onclick="event.stopPropagation()">
+              <input type="hidden" id="img-main">
+            </div>
           </div>
+
           <div class="form-field">
             <label>Estoque inicial *</label>
             <input type="number" id="fEstoque" placeholder="Ex: 10" min="0" value="10">
@@ -949,7 +547,7 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
           <div class="form-field">
             <label>Badge</label>
             <div class="badge-preview" id="badgeOpts">
-              <span class="bp-opt" data-val="">Nenhum</span>
+              <span class="bp-opt on" data-val="">Nenhum</span>
               <span class="bp-opt" data-val="Novo">Novo</span>
               <span class="bp-opt" data-val="Destaque">Destaque</span>
               <span class="bp-opt" data-val="Premium">Premium</span>
@@ -958,38 +556,11 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
             </div>
           </div>
 
-          <!-- FOTOS EXTRAS -->
+          <!-- FOTOS EXTRAS (com paste) -->
           <div class="form-field full">
             <label><i class="fa-solid fa-images" style="color:var(--gold);margin-right:.3rem"></i>Fotos adicionais (até 4)</label>
-            <div class="fotos-extras-grid">
-              <div class="foto-extra-slot">
-                <div class="foto-extra-num">Foto 2</div>
-                <div class="foto-extra-preview" id="prev-extra-0">
-                  <div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>
-                </div>
-                <input class="adm-foto-input" type="url" id="fExtra0" placeholder="https://..." oninput="previewFotoExtra('fExtra0','prev-extra-0')">
-              </div>
-              <div class="foto-extra-slot">
-                <div class="foto-extra-num">Foto 3</div>
-                <div class="foto-extra-preview" id="prev-extra-1">
-                  <div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>
-                </div>
-                <input class="adm-foto-input" type="url" id="fExtra1" placeholder="https://..." oninput="previewFotoExtra('fExtra1','prev-extra-1')">
-              </div>
-              <div class="foto-extra-slot">
-                <div class="foto-extra-num">Foto 4</div>
-                <div class="foto-extra-preview" id="prev-extra-2">
-                  <div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>
-                </div>
-                <input class="adm-foto-input" type="url" id="fExtra2" placeholder="https://..." oninput="previewFotoExtra('fExtra2','prev-extra-2')">
-              </div>
-              <div class="foto-extra-slot">
-                <div class="foto-extra-num">Foto 5</div>
-                <div class="foto-extra-preview" id="prev-extra-3">
-                  <div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>
-                </div>
-                <input class="adm-foto-input" type="url" id="fExtra3" placeholder="https://..." oninput="previewFotoExtra('fExtra3','prev-extra-3')">
-              </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:.3rem" id="fotosExtrasGrid">
+              <!-- gerado por JS -->
             </div>
           </div>
 
@@ -1011,25 +582,35 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
     </div>
     <div class="edit-body">
       <div class="edit-form">
-
         <div class="edit-field">
           <label>Nome do produto *</label>
           <input type="text" id="eNome" placeholder="Nome do produto">
         </div>
         <div class="edit-field">
           <label>Preço (R$) *</label>
-          <input type="number" id="ePreco" placeholder="Ex: 149" min="0" step="0.01">
+          <input type="number" id="ePreco" placeholder="Ex: 149.90" min="0" step="0.01">
         </div>
-
         <div class="edit-field full">
           <label>Descrição</label>
           <textarea id="eDesc" rows="3" placeholder="Descrição do produto..."></textarea>
         </div>
 
+        <!-- IMAGEM PRINCIPAL EDIÇÃO -->
         <div class="edit-field full">
-          <label>URL da imagem principal *</label>
-          <input type="url" id="eImg" placeholder="https://..." oninput="prevEditImg()">
-          <img class="edit-img-preview" id="eImgPreview" src="" alt="" onerror="this.style.opacity='.3'" onload="this.style.opacity='1'">
+          <label><i class="fa-solid fa-image" style="color:var(--gold);margin-right:.3rem"></i>Imagem principal *</label>
+          <div class="paste-zone" id="epz-main" tabindex="0"
+            onclick="focarPasteZone('epz-main')"
+            ondragover="dragOver(event,'epz-main')"
+            ondragleave="dragLeave('epz-main')"
+            ondrop="dropZone(event,'epz-main','eimg-main')">
+            <div class="paste-focus-hint">Ctrl+V para colar imagem</div>
+            <i class="fa-regular fa-image pz-icon"></i>
+            <div class="pz-title">Foto Principal</div>
+            <div class="pz-hint">Clique aqui e pressione Ctrl+V para colar foto do WhatsApp<br>ou arraste uma imagem</div>
+            <div class="pz-sep"><span>ou cole a URL</span></div>
+            <input class="pz-url-input" type="url" id="eimg-main-url" placeholder="https://..." oninput="urlParaZone('eimg-main-url','epz-main','eimg-main')" onclick="event.stopPropagation()">
+            <input type="hidden" id="eimg-main">
+          </div>
         </div>
 
         <div class="edit-field">
@@ -1040,7 +621,6 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
           <label>Tamanhos (separados por vírgula)</label>
           <input type="text" id="eSizes" placeholder="P,M,G,GG ou 38,40,42">
         </div>
-
         <div class="edit-field full">
           <label>Badge</label>
           <div class="edit-badge-row" id="editBadgeOpts">
@@ -1053,32 +633,13 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
           </div>
         </div>
 
+        <!-- FOTOS EXTRAS EDIÇÃO -->
         <div class="edit-field full">
           <div class="edit-section-title"><i class="fa-solid fa-images"></i> Fotos adicionais (até 4)</div>
-          <div class="edit-fotos-grid">
-            <div class="edit-foto-slot">
-              <div class="edit-foto-num">Foto 2</div>
-              <div class="edit-foto-prev" id="eprev-0"><div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div></div>
-              <input class="adm-foto-input" type="url" id="eFoto0" placeholder="https://..." oninput="prevEditFoto(0)">
-            </div>
-            <div class="edit-foto-slot">
-              <div class="edit-foto-num">Foto 3</div>
-              <div class="edit-foto-prev" id="eprev-1"><div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div></div>
-              <input class="adm-foto-input" type="url" id="eFoto1" placeholder="https://..." oninput="prevEditFoto(1)">
-            </div>
-            <div class="edit-foto-slot">
-              <div class="edit-foto-num">Foto 4</div>
-              <div class="edit-foto-prev" id="eprev-2"><div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div></div>
-              <input class="adm-foto-input" type="url" id="eFoto2" placeholder="https://..." oninput="prevEditFoto(2)">
-            </div>
-            <div class="edit-foto-slot">
-              <div class="edit-foto-num">Foto 5</div>
-              <div class="edit-foto-prev" id="eprev-3"><div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div></div>
-              <input class="adm-foto-input" type="url" id="eFoto3" placeholder="https://..." oninput="prevEditFoto(3)">
-            </div>
+          <div class="edit-fotos-grid" id="editFotosGrid">
+            <!-- gerado por JS -->
           </div>
         </div>
-
       </div>
     </div>
     <div class="edit-foot">
@@ -1099,62 +660,303 @@ footer .fl{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--whi
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== PRODUTOS INICIAIS =====
+// ========== PRODUTOS PADRÃO ==========
 const PRODUTOS_PADRAO = [
-  {id:1,nome:"Camiseta Premium",preco:149,desc:"Camiseta oversized em algodão Pima 100%. Corte relaxado, acabamento impecável.",img:"https://picsum.photos/900/1200?random=1",badge:"Destaque",sizes:["P","M","G","GG"],estoque:12,fotos:[]},
-  {id:2,nome:"Moletom Black",preco:229,desc:"Moletom premium em fleece ultra macio. Design minimalista com interior escovado.",img:"https://picsum.photos/900/1200?random=2",badge:"Novo",sizes:["P","M","G","GG","XGG"],estoque:8,fotos:[]},
-  {id:3,nome:"Jaqueta Premium",preco:349,desc:"Jaqueta de couro sintético premium com acabamento fosco. Design atemporal.",img:"https://picsum.photos/900/1200?random=3",badge:null,sizes:["P","M","G","GG"],estoque:5,fotos:[]},
-  {id:4,nome:"Calça Cargo Slim",preco:279,desc:"Calça cargo com corte slim moderno. Bolsos laterais funcionais e tecido ripstop.",img:"https://picsum.photos/900/1200?random=4",badge:"Novo",sizes:["38","40","42","44","46"],estoque:0,fotos:[]},
-  {id:5,nome:"Polo Piqué",preco:189,desc:"Camisa polo clássica em piqué de algodão egípcio. Bordado discreto.",img:"https://picsum.photos/900/1200?random=5",badge:null,sizes:["P","M","G","GG"],estoque:20,fotos:[]},
-  {id:6,nome:"Bermuda Linho",preco:169,desc:"Bermuda em linho italiano lavado. Leve, respirável e com caimento perfeito.",img:"https://picsum.photos/900/1200?random=6",badge:null,sizes:["38","40","42","44"],estoque:3,fotos:[]},
-  {id:7,nome:"Jaqueta Bomber",preco:389,desc:"Bomber clássica com forro em seda sintética e ribana no punho, barra e gola.",img:"https://picsum.photos/900/1200?random=7",badge:"Destaque",sizes:["P","M","G","GG"],estoque:6,fotos:[]},
-  {id:8,nome:"Regata Dry-Fit",preco:99,desc:"Regata técnica em dry-fit com proteção UV50+. Ideal para treinos ou uso casual.",img:"https://picsum.photos/900/1200?random=8",badge:null,sizes:["P","M","G","GG","XGG"],estoque:15,fotos:[]},
-  {id:9,nome:"Sobretudo Wool",preco:699,desc:"Sobretudo em lã virgem italiana com forro de seda. Elegância atemporal.",img:"https://picsum.photos/900/1200?random=9",badge:"Premium",sizes:["P","M","G","GG"],estoque:2,fotos:[]},
-  {id:10,nome:"Calça Alfaiataria",preco:319,desc:"Calça de alfaiataria em tecido técnico com queda impecável.",img:"https://picsum.photos/900/1200?random=10",badge:null,sizes:["38","40","42","44","46"],estoque:0,fotos:[]},
-  {id:11,nome:"Camisa Oxford",preco:209,desc:"Camisa oxford em algodão 100% com textura característica. Colarinho button-down.",img:"https://picsum.photos/900/1200?random=31",badge:null,sizes:["P","M","G","GG"],estoque:9,fotos:[]},
-  {id:12,nome:"Blazer Slim",preco:479,desc:"Blazer slim em tecido techno-wool italiano. Forro parcial em viscose.",img:"https://picsum.photos/900/1200?random=36",badge:"Premium",sizes:["48","50","52","54"],estoque:4,fotos:[]},
+  {id:1,nome:"Camiseta Premium",preco:149.90,desc:"Camiseta oversized em algodão Pima 100%. Corte relaxado, acabamento impecável.",img:"https://picsum.photos/900/1200?random=1",badge:"Destaque",sizes:["P","M","G","GG"],estoque:12,fotos:[]},
+  {id:2,nome:"Moletom Black",preco:229.90,desc:"Moletom premium em fleece ultra macio. Design minimalista com interior escovado.",img:"https://picsum.photos/900/1200?random=2",badge:"Novo",sizes:["P","M","G","GG","XGG"],estoque:8,fotos:[]},
+  {id:3,nome:"Jaqueta Premium",preco:349.00,desc:"Jaqueta de couro sintético premium com acabamento fosco. Design atemporal.",img:"https://picsum.photos/900/1200?random=3",badge:null,sizes:["P","M","G","GG"],estoque:5,fotos:[]},
+  {id:4,nome:"Calça Cargo Slim",preco:279.90,desc:"Calça cargo com corte slim moderno. Bolsos laterais funcionais e tecido ripstop.",img:"https://picsum.photos/900/1200?random=4",badge:"Novo",sizes:["38","40","42","44","46"],estoque:0,fotos:[]},
+  {id:5,nome:"Polo Piqué",preco:189.90,desc:"Camisa polo clássica em piqué de algodão egípcio. Bordado discreto.",img:"https://picsum.photos/900/1200?random=5",badge:null,sizes:["P","M","G","GG"],estoque:20,fotos:[]},
+  {id:6,nome:"Bermuda Linho",preco:169.00,desc:"Bermuda em linho italiano lavado. Leve, respirável e com caimento perfeito.",img:"https://picsum.photos/900/1200?random=6",badge:null,sizes:["38","40","42","44"],estoque:3,fotos:[]},
+  {id:7,nome:"Jaqueta Bomber",preco:389.90,desc:"Bomber clássica com forro em seda sintética e ribana no punho, barra e gola.",img:"https://picsum.photos/900/1200?random=7",badge:"Destaque",sizes:["P","M","G","GG"],estoque:6,fotos:[]},
+  {id:8,nome:"Regata Dry-Fit",preco:99.90,desc:"Regata técnica em dry-fit com proteção UV50+. Ideal para treinos ou uso casual.",img:"https://picsum.photos/900/1200?random=8",badge:null,sizes:["P","M","G","GG","XGG"],estoque:15,fotos:[]},
+  {id:9,nome:"Sobretudo Wool",preco:699.00,desc:"Sobretudo em lã virgem italiana com forro de seda. Elegância atemporal.",img:"https://picsum.photos/900/1200?random=9",badge:"Premium",sizes:["P","M","G","GG"],estoque:2,fotos:[]},
+  {id:10,nome:"Calça Alfaiataria",preco:319.90,desc:"Calça de alfaiataria em tecido técnico com queda impecável.",img:"https://picsum.photos/900/1200?random=10",badge:null,sizes:["38","40","42","44","46"],estoque:0,fotos:[]},
+  {id:11,nome:"Camisa Oxford",preco:209.90,desc:"Camisa oxford em algodão 100% com textura característica. Colarinho button-down.",img:"https://picsum.photos/900/1200?random=31",badge:null,sizes:["P","M","G","GG"],estoque:9,fotos:[]},
+  {id:12,nome:"Blazer Slim",preco:479.00,desc:"Blazer slim em tecido techno-wool italiano. Forro parcial em viscose.",img:"https://picsum.photos/900/1200?random=36",badge:"Premium",sizes:["48","50","52","54"],estoque:4,fotos:[]},
 ];
 
-// ===== PERSISTÊNCIA =====
-const DB_KEY = 'f2store_produtos';
+// ========== JSONBIN SYNC ==========
+const JSONBIN_ID = '6a315918da38895dfec9f225';
+const JSONBIN_KEY = '$2a$10$1.LsnGx1jQ8h6gLe03y5OO3F12gGxSCryr9wzXaIjtRBiMesPiuxC';
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}`;
+let _syncTimeout = null;
 
-function salvarDB(){
-  try{ localStorage.setItem(DB_KEY, JSON.stringify(produtos)); } catch(e){}
+function setSyncStatus(status, text){
+  const el = document.getElementById('syncIndicator');
+  const txt = document.getElementById('syncText');
+  if(!el) return;
+  el.className = 'sync-indicator on ' + status;
+  if(txt) txt.textContent = text;
+  // Auto-hide after 4s if synced
+  if(status === 'synced'){
+    clearTimeout(el._hideTimer);
+    el._hideTimer = setTimeout(()=> el.classList.remove('on'), 4000);
+  }
 }
 
-function carregarDB(){
-  try{
-    const raw = localStorage.getItem(DB_KEY);
-    if(raw){
-      const parsed = JSON.parse(raw);
-      if(Array.isArray(parsed) && parsed.length){
-        // garantir campo fotos em produtos antigos
-        return parsed.map(p=>({...p, fotos: p.fotos||[]}));
+async function salvarDB(){
+  setSyncStatus('syncing', 'Salvando...');
+  clearTimeout(_syncTimeout);
+  _syncTimeout = setTimeout(async()=>{
+    try{
+      const r = await fetch(JSONBIN_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_KEY
+        },
+        body: JSON.stringify({ produtos })
+      });
+      if(r.ok){
+        setSyncStatus('synced', 'Sincronizado ✓');
+      } else {
+        setSyncStatus('error', 'Erro ao salvar');
       }
+    }catch(e){
+      console.warn('Sync error', e);
+      setSyncStatus('error', 'Sem conexão');
     }
-  } catch(e){}
+  }, 600);
+}
+
+async function carregarNuvem(){
+  try{
+    const r = await fetch(JSONBIN_URL + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN_KEY }
+    });
+    if(!r.ok) return null;
+    const data = await r.json();
+    if(data.record && Array.isArray(data.record.produtos) && data.record.produtos.length){
+      return data.record.produtos.map(x => ({...x, fotos: x.fotos || []}));
+    }
+  }catch(e){
+    console.warn('Load error', e);
+  }
   return null;
 }
 
-let produtos = carregarDB() || JSON.parse(JSON.stringify(PRODUTOS_PADRAO));
-
+let produtos = JSON.parse(JSON.stringify(PRODUTOS_PADRAO));
 let carrinho = [];
 let produtoAtual = null;
 let tamanhoSel = null;
 let filtroAtivo = 'todos';
 let badgeSel = '';
+let editId = null;
+let editBadgeSel = '';
+const fotosExpandidas = new Set();
 
-// ===== HELPERS =====
-function fmt(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});}
-function nextId(){return produtos.length ? Math.max(...produtos.map(p=>p.id))+1 : 1;}
-
+// ========== HELPERS ==========
+function fmt(v){ return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function nextId(){ return produtos.length ? Math.max(...produtos.map(p=>p.id))+1 : 1; }
 function toast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('on');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2600);
+  t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('on'),2600);
 }
 
-// ===== SLIDESHOW =====
+// ========== EXPORTAR HTML ==========
+function exportarHTML(){
+  const html = document.documentElement.outerHTML;
+  const produtosJSON = JSON.stringify(produtos, null, 2);
+  const novoHtml = html.replace(
+    /const PRODUTOS_PADRAO = \[[\s\S]*?\];/,
+    `const PRODUTOS_PADRAO = ${produtosJSON};`
+  );
+  const blob = new Blob([novoHtml], {type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'F2Store.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('✓ Arquivo salvo! Substitua o HTML antigo por este.');
+}
+
+// ========== PASTE ZONE ENGINE ==========
+let pasteZoneAtiva = null;
+
+function criarPasteZoneHTML(zoneId, hiddenId, label){
+  return `
+  <div class="paste-zone" id="${zoneId}" tabindex="0"
+    onclick="focarPasteZone('${zoneId}')"
+    ondragover="dragOver(event,'${zoneId}')"
+    ondragleave="dragLeave('${zoneId}')"
+    ondrop="dropZone(event,'${zoneId}','${hiddenId}')">
+    <div class="paste-focus-hint">Ctrl+V para colar imagem</div>
+    <i class="fa-regular fa-image pz-icon"></i>
+    <div class="pz-title">${label}</div>
+    <div class="pz-hint">Clique aqui e pressione Ctrl+V para colar foto do WhatsApp<br>ou arraste uma imagem</div>
+    <div class="pz-sep"><span>ou cole a URL</span></div>
+    <input class="pz-url-input" type="url" id="${hiddenId}-url" placeholder="https://..." oninput="urlParaZone('${hiddenId}-url','${zoneId}','${hiddenId}')" onclick="event.stopPropagation()">
+    <input type="hidden" id="${hiddenId}">
+  </div>`;
+}
+
+function focarPasteZone(zoneId){
+  if(pasteZoneAtiva && pasteZoneAtiva !== zoneId){
+    const old = document.getElementById(pasteZoneAtiva);
+    if(old) old.classList.remove('focused');
+  }
+  pasteZoneAtiva = zoneId;
+  const el = document.getElementById(zoneId);
+  if(el){ el.classList.add('focused'); el.focus(); }
+}
+
+function blurPasteZone(zoneId){
+  const el = document.getElementById(zoneId);
+  if(el) el.classList.remove('focused');
+  if(pasteZoneAtiva === zoneId) pasteZoneAtiva = null;
+}
+
+function dragOver(e, zoneId){
+  e.preventDefault();
+  document.getElementById(zoneId).classList.add('drag-over');
+  focarPasteZone(zoneId);
+}
+function dragLeave(zoneId){
+  document.getElementById(zoneId).classList.remove('drag-over');
+}
+function dropZone(e, zoneId, hiddenId){
+  e.preventDefault();
+  document.getElementById(zoneId).classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if(file && file.type.startsWith('image/')) fileParaZone(file, zoneId, hiddenId);
+}
+
+function fileParaZone(file, zoneId, hiddenId){
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    setZoneImagem(zoneId, hiddenId, ev.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+
+function setZoneImagem(zoneId, hiddenId, src){
+  const zone = document.getElementById(zoneId);
+  const hidden = document.getElementById(hiddenId);
+  if(!zone||!hidden) return;
+  hidden.value = src;
+  zone.classList.add('has-img');
+  zone.classList.remove('focused');
+  zone.innerHTML = `
+    <div class="paste-focus-hint">Ctrl+V para substituir</div>
+    <img class="pz-preview" src="${src}" alt="preview">
+    <div class="pz-actions">
+      <button class="pz-btn" onclick="event.stopPropagation();focarPasteZone('${zoneId}')"><i class="fa-solid fa-arrows-rotate"></i> Trocar imagem</button>
+      <button class="pz-btn danger" onclick="event.stopPropagation();limparZone('${zoneId}','${hiddenId}')"><i class="fa-solid fa-trash"></i> Remover</button>
+    </div>
+    <div class="pz-sep"><span>ou cole a URL</span></div>
+    <input class="pz-url-input" type="url" id="${hiddenId}-url" placeholder="https://..." oninput="urlParaZone('${hiddenId}-url','${zoneId}','${hiddenId}')" onclick="event.stopPropagation()">
+    <input type="hidden" id="${hiddenId}" value="${src.length > 200 ? '(base64)' : src}">
+  `;
+  document.getElementById(hiddenId).value = src;
+  pasteZoneAtiva = zoneId;
+}
+
+function limparZone(zoneId, hiddenId){
+  const zone = document.getElementById(zoneId);
+  if(!zone) return;
+  zone.classList.remove('has-img','focused');
+  zone.innerHTML = `
+    <div class="paste-focus-hint">Ctrl+V para colar imagem</div>
+    <i class="fa-regular fa-image pz-icon"></i>
+    <div class="pz-title">Foto</div>
+    <div class="pz-hint">Clique aqui e pressione Ctrl+V para colar foto do WhatsApp<br>ou arraste uma imagem</div>
+    <div class="pz-sep"><span>ou cole a URL</span></div>
+    <input class="pz-url-input" type="url" id="${hiddenId}-url" placeholder="https://..." oninput="urlParaZone('${hiddenId}-url','${zoneId}','${hiddenId}')" onclick="event.stopPropagation()">
+    <input type="hidden" id="${hiddenId}">
+  `;
+  pasteZoneAtiva = null;
+}
+
+function urlParaZone(inputId, zoneId, hiddenId){
+  const inp = document.getElementById(inputId);
+  if(!inp) return;
+  const src = inp.value.trim();
+  const hidden = document.getElementById(hiddenId);
+  if(hidden) hidden.value = src;
+  if(src){
+    const zone = document.getElementById(zoneId);
+    zone.classList.add('has-img');
+    let preview = zone.querySelector('img.pz-preview');
+    if(!preview){
+      preview = document.createElement('img');
+      preview.className = 'pz-preview';
+      preview.onerror = ()=>{ zone.classList.remove('has-img'); preview.remove(); };
+      const icon = zone.querySelector('.pz-icon');
+      if(icon) icon.style.display = 'none';
+      zone.insertBefore(preview, zone.querySelector('.pz-hint'));
+    }
+    preview.src = src;
+  } else {
+    const zone = document.getElementById(zoneId);
+    zone.classList.remove('has-img');
+    const preview = zone.querySelector('img.pz-preview');
+    if(preview) preview.remove();
+    const icon = zone.querySelector('.pz-icon');
+    if(icon) icon.style.display = '';
+  }
+}
+
+function getZoneValue(hiddenId){
+  const el = document.getElementById(hiddenId);
+  return el ? el.value.trim() : '';
+}
+
+// CTRL+V global
+document.addEventListener('paste', function(e){
+  if(!pasteZoneAtiva) return;
+  const items = e.clipboardData.items;
+  for(let i=0;i<items.length;i++){
+    if(items[i].type.startsWith('image/')){
+      e.preventDefault();
+      const file = items[i].getAsFile();
+      const hiddenId = pasteZoneAtiva.replace(/^(e)?pz-/, (m,p1)=> (p1||'') + 'img-');
+      fileParaZone(file, pasteZoneAtiva, hiddenId);
+      toast('✓ Imagem colada com sucesso!');
+      return;
+    }
+  }
+});
+
+// ========== CONSTRUIR PASTE ZONES DE FOTOS EXTRAS ==========
+function buildFotosExtrasGrid(containerIdNovo, containerIdEdit, prefix, values){
+  const gridNovo = document.getElementById(containerIdNovo);
+  if(gridNovo){
+    gridNovo.innerHTML = [0,1,2,3].map(i=>{
+      const zId = `${prefix}pz-extra-${i}`;
+      const hId = `${prefix}img-extra-${i}`;
+      return `
+      <div style="display:flex;flex-direction:column;gap:.3rem">
+        <div style="font-size:.65rem;color:var(--gray-400);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center">Foto ${i+2}</div>
+        ${criarPasteZoneHTML(zId, hId, `Foto ${i+2}`)}
+      </div>`;
+    }).join('');
+  }
+  const gridEdit = document.getElementById(containerIdEdit);
+  if(gridEdit){
+    gridEdit.innerHTML = [0,1,2,3].map(i=>{
+      const zId = `epz-extra-${i}`;
+      const hId = `eimg-extra-${i}`;
+      return `
+      <div style="display:flex;flex-direction:column;gap:.3rem">
+        <div style="font-size:.62rem;color:var(--gray-400);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center">Foto ${i+2}</div>
+        ${criarPasteZoneHTML(zId, hId, `Foto ${i+2}`)}
+      </div>`;
+    }).join('');
+    if(values){
+      values.forEach((src,i)=>{
+        if(src){
+          setZoneImagem(`epz-extra-${i}`, `eimg-extra-${i}`, src);
+          const urlInp = document.getElementById(`eimg-extra-${i}-url`);
+          if(urlInp && !src.startsWith('data:')) urlInp.value = src;
+        }
+      });
+    }
+  }
+}
+
+// ========== SLIDESHOW ==========
 const SLIDES = [
   'https://picsum.photos/1600/900?random=201',
   'https://picsum.photos/1600/900?random=202',
@@ -1171,7 +973,7 @@ function initSlideshow(){
     const el = document.createElement('div');
     el.className = 'hero-slide' + (i===0?' active':'');
     el.style.backgroundImage = `url('${src}')`;
-    el.id = 'slide-' + i;
+    el.id = 'slide-'+i;
     hero.insertBefore(el, hero.querySelector('.hero-overlay'));
   });
   dots.innerHTML = SLIDES.map((_,i)=>`<button class="hero-dot${i===0?' on':''}" onclick="goSlide(${i})"></button>`).join('');
@@ -1181,7 +983,7 @@ function initSlideshow(){
 function goSlide(n){
   document.getElementById('slide-'+slideIdx).classList.remove('active');
   document.querySelectorAll('.hero-dot')[slideIdx].classList.remove('on');
-  slideIdx = (n + SLIDES.length) % SLIDES.length;
+  slideIdx = (n+SLIDES.length)%SLIDES.length;
   const el = document.getElementById('slide-'+slideIdx);
   el.classList.add('active');
   el.style.animation='none'; el.offsetHeight; el.style.animation='';
@@ -1190,25 +992,40 @@ function goSlide(n){
 }
 function slideNext(){ goSlide(slideIdx+1); }
 function slidePrev(){ goSlide(slideIdx-1); }
-function startSlideTimer(){ clearInterval(slideTimer); slideTimer=setInterval(slideNext, 5000); }
+function startSlideTimer(){ clearInterval(slideTimer); slideTimer=setInterval(slideNext,5000); }
 
-// ===== ABRIR LOJA =====
-function abrirLoja(){
+// ========== ABRIR LOJA (com carregamento da nuvem) ==========
+async function abrirLoja(){
+  const loadingEl = document.getElementById('splashLoading');
+  loadingEl.classList.add('on');
+
+  // Carregar da nuvem
+  const nuvem = await carregarNuvem();
+  if(nuvem && nuvem.length){
+    produtos = nuvem;
+  }
+  // Se nuvem vazia/erro, usar padrão e salvar na nuvem
+  else {
+    produtos = JSON.parse(JSON.stringify(PRODUTOS_PADRAO));
+    salvarDB(); // inicializar o bin com padrão
+  }
+
+  loadingEl.classList.remove('on');
   document.getElementById('splash').style.display='none';
   document.getElementById('loja').style.display='block';
   initSlideshow();
+  buildFotosExtrasGrid('fotosExtrasGrid','editFotosGrid','',null);
   renderGrid();
   renderFiltros();
 }
 
-// ===== FILTROS =====
+// ========== FILTROS ==========
 function renderFiltros(){
   const badges=['todos',...new Set(produtos.filter(p=>p.badge).map(p=>p.badge))];
   document.getElementById('filterRow').innerHTML=badges.map(b=>`
     <button class="filter-btn${b===filtroAtivo?' on':''}" onclick="setFiltro('${b}',this)">${b==='todos'?'Todos':b}</button>
   `).join('');
 }
-
 function setFiltro(b,el){
   filtroAtivo=b;
   document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('on'));
@@ -1216,7 +1033,7 @@ function setFiltro(b,el){
   renderGrid();
 }
 
-// ===== RENDER GRID =====
+// ========== RENDER GRID ==========
 function renderGrid(){
   const q=document.getElementById('searchInput').value.toLowerCase();
   let lista=produtos.filter(p=>{
@@ -1233,16 +1050,8 @@ function renderGrid(){
   g.innerHTML=lista.map(p=>{
     const semE=p.estoque<=0;
     const low=p.estoque>0&&p.estoque<=3;
-    let stockEl=semE
-      ?'<span class="card-stock stock-out">Esgotado</span>'
-      :low
-        ?`<span class="card-stock stock-low">Últimas ${p.estoque}</span>`
-        :`<span class="card-stock stock-ok">Em estoque</span>`;
-    let badge=semE
-      ?'<div class="card-badge badge-sem">Esgotado</div>'
-      :p.badge
-        ?`<div class="card-badge">${p.badge}</div>`
-        :'';
+    let stockEl=semE?'<span class="card-stock stock-out">Esgotado</span>':low?`<span class="card-stock stock-low">Últimas ${p.estoque}</span>`:`<span class="card-stock stock-ok">Em estoque</span>`;
+    let badge=semE?'<div class="card-badge badge-sem">Esgotado</div>':p.badge?`<div class="card-badge">${p.badge}</div>`:'';
     let hoverTxt=semE?'<i class="fa-solid fa-xmark"></i> Esgotado':'<i class="fa-regular fa-eye"></i> Ver produto';
     return `
     <div class="card${semE?' sem-estoque':''}" onclick="abrirModal(${p.id})">
@@ -1262,10 +1071,9 @@ function renderGrid(){
     </div>`;
   }).join('');
 }
+function buscar(){ renderGrid(); }
 
-function buscar(){renderGrid();}
-
-// ===== MODAL PRODUTO =====
+// ========== MODAL PRODUTO ==========
 function abrirModal(id){
   produtoAtual=produtos.find(p=>p.id===id);
   tamanhoSel=null;
@@ -1274,100 +1082,58 @@ function abrirModal(id){
   document.getElementById('modalName').textContent=produtoAtual.nome;
   document.getElementById('modalPrice').textContent=fmt(produtoAtual.preco);
   document.getElementById('modalDesc').textContent=produtoAtual.desc;
-
-  // thumbs — imagem principal + fotos extras
-  const todasFotos = [produtoAtual.img, ...(produtoAtual.fotos||[]).filter(Boolean)];
-  document.getElementById('modalThumbs').innerHTML = todasFotos.map((src,i)=>`
+  const todasFotos=[produtoAtual.img,...(produtoAtual.fotos||[]).filter(Boolean)];
+  document.getElementById('modalThumbs').innerHTML=todasFotos.map((src,i)=>`
     <img src="${src}" class="${i===0?'on':''}" onclick="trocaImg(this,'${src}')">
   `).join('');
-
-  // sizes
   document.getElementById('sizeGrid').innerHTML=(produtoAtual.sizes||[]).map(s=>`
     <button class="sz${semE?' sz-dis':''}" onclick="selSize(this,'${s}')" ${semE?'disabled':''}>${s}</button>
   `).join('');
-
-  // stock info
   const si=document.getElementById('stockInfo');
-  if(semE){
-    si.textContent='⚠ Produto esgotado';
-    si.className='stock-info-modal stock-out';
-  }else if(produtoAtual.estoque<=3){
-    si.textContent=`⚡ Últimas ${produtoAtual.estoque} unidades!`;
-    si.className='stock-info-modal stock-low';
-  }else{
-    si.textContent=`✓ ${produtoAtual.estoque} unidades em estoque`;
-    si.className='stock-info-modal stock-ok';
-  }
+  if(semE){ si.textContent='⚠ Produto esgotado'; si.className='stock-info-modal stock-out'; }
+  else if(produtoAtual.estoque<=3){ si.textContent=`⚡ Últimas ${produtoAtual.estoque} unidades!`; si.className='stock-info-modal stock-low'; }
+  else{ si.textContent=`✓ ${produtoAtual.estoque} unidades em estoque`; si.className='stock-info-modal stock-ok'; }
   const btn=document.getElementById('btnAdd');
-  if(semE){
-    btn.disabled=true;
-    btn.innerHTML='<i class="fa-solid fa-xmark"></i><span>Produto esgotado</span>';
-    btn.className='btn-add';
-  }else{
-    btn.disabled=false;
-    btn.innerHTML='<i class="fa-solid fa-plus"></i><span>Adicionar ao carrinho</span>';
-    btn.className='btn-add';
-  }
+  if(semE){ btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-xmark"></i><span>Produto esgotado</span>'; btn.className='btn-add'; }
+  else{ btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-plus"></i><span>Adicionar ao carrinho</span>'; btn.className='btn-add'; }
   document.getElementById('modal').classList.add('on');
   document.body.style.overflow='hidden';
 }
-
-function fecharModal(){
-  document.getElementById('modal').classList.remove('on');
-  document.body.style.overflow='';
-}
-
+function fecharModal(){ document.getElementById('modal').classList.remove('on'); document.body.style.overflow=''; }
 function trocaImg(el,src){
   document.getElementById('modalImg').src=src;
   document.querySelectorAll('.modal-thumbs img').forEach(i=>i.classList.remove('on'));
   el.classList.add('on');
 }
-
 function selSize(el,s){
   if(produtoAtual.estoque<=0)return;
   document.querySelectorAll('.sz').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  tamanhoSel=s;
+  el.classList.add('on'); tamanhoSel=s;
 }
-
 function addCarrinho(){
   if(!produtoAtual||produtoAtual.estoque<=0)return;
   if(!tamanhoSel){toast('Selecione um tamanho');return;}
   const exist=carrinho.find(i=>i.id===produtoAtual.id&&i.size===tamanhoSel);
-  const totalNoCarrinho=exist?exist.qty:0;
-  if(totalNoCarrinho>=produtoAtual.estoque){toast('Quantidade máxima em estoque atingida');return;}
-  if(exist)exist.qty++;
+  const total=exist?exist.qty:0;
+  if(total>=produtoAtual.estoque){toast('Quantidade máxima em estoque atingida');return;}
+  if(exist) exist.qty++;
   else carrinho.push({id:produtoAtual.id,nome:produtoAtual.nome,preco:produtoAtual.preco,img:produtoAtual.img,size:tamanhoSel,qty:1});
   atualizarBadge();
   const btn=document.getElementById('btnAdd');
   btn.className='btn-add ok';
   btn.innerHTML='<i class="fa-solid fa-check"></i><span>Adicionado!</span>';
-  setTimeout(()=>{
-    btn.className='btn-add';
-    btn.innerHTML='<i class="fa-solid fa-plus"></i><span>Adicionar ao carrinho</span>';
-  },1800);
+  setTimeout(()=>{ btn.className='btn-add'; btn.innerHTML='<i class="fa-solid fa-plus"></i><span>Adicionar ao carrinho</span>'; },1800);
   toast(`${produtoAtual.nome} adicionado!`);
 }
-
 function atualizarBadge(){
   const n=carrinho.reduce((a,b)=>a+b.qty,0);
   const b=document.getElementById('cartBadge');
-  b.textContent=n;
-  b.classList.toggle('on',n>0);
+  b.textContent=n; b.classList.toggle('on',n>0);
 }
 
-// ===== CARRINHO =====
-function abrirCarrinho(){
-  renderCarrinho();
-  document.getElementById('drawer').classList.add('on');
-  document.getElementById('overlay').classList.add('on');
-}
-
-function fecharCarrinho(){
-  document.getElementById('drawer').classList.remove('on');
-  document.getElementById('overlay').classList.remove('on');
-}
-
+// ========== CARRINHO ==========
+function abrirCarrinho(){ renderCarrinho(); document.getElementById('drawer').classList.add('on'); document.getElementById('overlay').classList.add('on'); }
+function fecharCarrinho(){ document.getElementById('drawer').classList.remove('on'); document.getElementById('overlay').classList.remove('on'); }
 function renderCarrinho(){
   const body=document.getElementById('drawerBody');
   const foot=document.getElementById('drawerFoot');
@@ -1392,169 +1158,144 @@ function renderCarrinho(){
   </div>`).join('');
   const sub=carrinho.reduce((a,b)=>a+b.preco*b.qty,0);
   foot.innerHTML=`
-  <div class="sub-row">
-    <span>Subtotal</span>
-    <strong>${fmt(sub)}</strong>
-  </div>
-  <button class="btn-wpp" onclick="finalizarWpp()">
-    <i class="fa-brands fa-whatsapp"></i> Finalizar no WhatsApp
-  </button>
+  <div class="sub-row"><span>Subtotal</span><strong>${fmt(sub)}</strong></div>
+  <button class="btn-wpp" onclick="finalizarWpp()"><i class="fa-brands fa-whatsapp"></i> Finalizar no WhatsApp</button>
   <button class="btn-continuar" onclick="fecharCarrinho()">Continuar comprando</button>`;
 }
-
 function qtdCart(i,d){
   const prod=produtos.find(p=>p.id===carrinho[i].id);
   const novaQty=carrinho[i].qty+d;
   if(novaQty<=0){carrinho.splice(i,1);}
   else if(prod&&novaQty>prod.estoque){toast('Quantidade máxima em estoque');}
   else{carrinho[i].qty=novaQty;}
-  atualizarBadge();renderCarrinho();
+  atualizarBadge(); renderCarrinho();
 }
-
-function rmCart(i){
-  carrinho.splice(i,1);
-  atualizarBadge();renderCarrinho();
-}
-
+function rmCart(i){ carrinho.splice(i,1); atualizarBadge(); renderCarrinho(); }
 function finalizarWpp(){
   if(!carrinho.length){toast('Carrinho vazio');return;}
   let msg='Olá! Gostaria de comprar:%0A%0A';
   let total=0;
-  carrinho.forEach(i=>{
-    msg+=`• ${i.nome} (tam. ${i.size}) x${i.qty} — ${fmt(i.preco*i.qty)}%0A`;
-    total+=i.preco*i.qty;
-  });
+  carrinho.forEach(i=>{ msg+=`• ${i.nome} (tam. ${i.size}) x${i.qty} — ${fmt(i.preco*i.qty)}%0A`; total+=i.preco*i.qty; });
   msg+=`%0A*Total: ${fmt(total)}*`;
   window.open('https://wa.me/5511972833011?text='+msg,'_blank');
 }
 
-// ===== AUTENTICAÇÃO ADMIN =====
-const SENHA_ADMIN = 'f2store2025';
-let adminLogado = false;
+// ========== AUTH ADMIN ==========
+const SENHA_ADMIN='f2store2025';
+let adminLogado=false;
+let logoClicks=0, logoTimer=null;
 
-let logoClicks = 0, logoTimer = null;
 function logoClick(){
   logoClicks++;
   clearTimeout(logoTimer);
-  logoTimer = setTimeout(()=>logoClicks=0, 2000);
-  if(logoClicks >= 5){ logoClicks=0; abrirLogin(); }
+  logoTimer=setTimeout(()=>logoClicks=0,2000);
+  if(logoClicks>=5){logoClicks=0;abrirLogin();}
 }
 
-let konamiBuffer = '';
-document.addEventListener('keydown', e=>{
-  if(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA') return;
-  konamiBuffer += e.key.toLowerCase();
-  konamiBuffer = konamiBuffer.slice(-7);
-  if(konamiBuffer === 'f2admin'){ konamiBuffer=''; abrirLogin(); }
+let konamiBuffer='';
+document.addEventListener('keydown',e=>{
+  if(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA')return;
+  konamiBuffer+=e.key.toLowerCase();
+  konamiBuffer=konamiBuffer.slice(-7);
+  if(konamiBuffer==='f2admin'){konamiBuffer='';abrirLogin();}
 });
 
 function abrirLogin(){
-  if(adminLogado){ abrirAdmin(); return; }
+  if(adminLogado){abrirAdmin();return;}
   document.getElementById('senhaInput').value='';
   document.getElementById('loginErro').textContent='';
   document.getElementById('loginOverlay').classList.add('on');
   document.body.style.overflow='hidden';
   setTimeout(()=>document.getElementById('senhaInput').focus(),100);
 }
-
-function fecharLogin(){
-  document.getElementById('loginOverlay').classList.remove('on');
-  document.body.style.overflow='';
-}
-
+function fecharLogin(){ document.getElementById('loginOverlay').classList.remove('on'); document.body.style.overflow=''; }
 function toggleVerSenha(){
   const inp=document.getElementById('senhaInput');
   const icon=document.getElementById('eyeIcon');
   if(inp.type==='password'){inp.type='text';icon.className='fa-regular fa-eye-slash';}
   else{inp.type='password';icon.className='fa-regular fa-eye';}
 }
-
 function verificarSenha(){
   const val=document.getElementById('senhaInput').value;
-  const err=document.getElementById('loginErro');
   if(val===SENHA_ADMIN){
-    adminLogado=true;
-    fecharLogin();
+    adminLogado=true; fecharLogin();
     document.getElementById('btnLogout').classList.add('on');
     abrirAdmin();
   }else{
-    err.textContent='Senha incorreta. Tente novamente.';
+    document.getElementById('loginErro').textContent='Senha incorreta. Tente novamente.';
     document.getElementById('senhaInput').value='';
     document.getElementById('senhaInput').focus();
     const box=document.querySelector('.login-box');
-    box.style.animation='none';
-    box.offsetHeight;
-    box.style.animation='shake .35s var(--ease)';
+    box.style.animation='none'; box.offsetHeight; box.style.animation='shake .35s var(--ease)';
   }
 }
+function logout(){ adminLogado=false; document.getElementById('btnLogout').classList.remove('on'); fecharAdmin(); toast('Sessão encerrada.'); }
 
-function logout(){
-  adminLogado=false;
-  document.getElementById('btnLogout').classList.remove('on');
-  fecharAdmin();
-  toast('Sessão encerrada.');
-}
-
-// ===== PAINEL ADMIN =====
-let adminTabAtiva='lista';
-// guarda quais itens estão com fotos expandidas
-const fotosExpandidas = new Set();
-
-function abrirAdmin(){
-  renderAdminLista();
-  document.getElementById('adminOverlay').classList.add('on');
-  document.body.style.overflow='hidden';
-}
-
-function fecharAdmin(){
-  document.getElementById('adminOverlay').classList.remove('on');
-  document.body.style.overflow='';
-}
+// ========== PAINEL ADMIN ==========
+function abrirAdmin(){ renderAdminLista(); document.getElementById('adminOverlay').classList.add('on'); document.body.style.overflow='hidden'; }
+function fecharAdmin(){ document.getElementById('adminOverlay').classList.remove('on'); document.body.style.overflow=''; pasteZoneAtiva=null; }
 
 function adminTab(tab,el){
-  adminTabAtiva=tab;
   document.querySelectorAll('.atab').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
   document.getElementById('adminLista').style.display=tab==='lista'?'block':'none';
   document.getElementById('adminNovo').style.display=tab==='novo'?'block':'none';
-  if(tab==='lista')renderAdminLista();
+  if(tab==='lista') renderAdminLista();
+  if(tab==='novo'){
+    buildFotosExtrasGrid('fotosExtrasGrid','editFotosGrid','',null);
+    limparZone('pz-main','img-main');
+  }
+  pasteZoneAtiva=null;
 }
 
 function renderAdminLista(){
   const el=document.getElementById('adminLista');
   if(!produtos.length){el.innerHTML='<p style="color:var(--gray-400);font-size:.85rem;text-align:center;padding:2rem">Nenhum produto cadastrado.</p>';return;}
-  el.innerHTML=`<div class="admin-product-list">${produtos.map((p)=>{
+  el.innerHTML=`<div class="admin-product-list">${produtos.map(p=>{
     const semE=p.estoque<=0;
     const low=p.estoque>0&&p.estoque<=3;
     const stockClass=semE?'stock-out':low?'stock-low':'stock-ok';
-    const fotos = p.fotos||[];
-    const fotosCount = fotos.filter(Boolean).length;
-    const expandido = fotosExpandidas.has(p.id);
-
-    const fotosHtml = expandido ? `
+    const fotos=p.fotos||[];
+    const fotosCount=fotos.filter(Boolean).length;
+    const expandido=fotosExpandidas.has(p.id);
+    const fotosHtml=expandido?`
     <div class="adm-fotos-section" id="fotos-section-${p.id}">
-      <div class="adm-fotos-label"><i class="fa-solid fa-images"></i> Fotos adicionais (até 4)</div>
+      <div class="adm-fotos-label"><i class="fa-solid fa-images"></i> Fotos adicionais (até 4) — Clique em uma zona e Ctrl+V para colar do WhatsApp</div>
       <div class="adm-fotos-grid">
         ${[0,1,2,3].map(i=>{
-          const src = fotos[i]||'';
-          return `
-          <div class="adm-foto-slot">
-            <div class="adm-foto-slot-num">Foto ${i+2}</div>
-            <div class="adm-foto-preview" id="prev-${p.id}-${i}">
-              ${src
-                ? `<img src="${src}" onerror="this.style.display='none'">`
-                : `<div class="no-img"><i class="fa-regular fa-image"></i><span>vazio</span></div>`
-              }
-            </div>
-            <input class="adm-foto-input" type="url" id="foto-${p.id}-${i}" value="${src}" placeholder="https://..." oninput="prevFotoAdmin(${p.id},${i})">
-          </div>`;
+          const src=fotos[i]||'';
+          const zId=`admz-${p.id}-${i}`;
+          const hId=`admh-${p.id}-${i}`;
+          if(src){
+            return `
+            <div style="display:flex;flex-direction:column;gap:.3rem">
+              <div style="font-size:.6rem;color:var(--gray-400);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center">Foto ${i+2}</div>
+              <div class="paste-zone has-img" id="${zId}" tabindex="0"
+                onclick="focarPasteZone('${zId}')"
+                ondragover="dragOver(event,'${zId}')"
+                ondragleave="dragLeave('${zId}')"
+                ondrop="dropZone(event,'${zId}','${hId}')">
+                <div class="paste-focus-hint">Ctrl+V para substituir</div>
+                <img class="pz-preview" src="${src}" alt="">
+                <div class="pz-actions">
+                  <button class="pz-btn danger" onclick="event.stopPropagation();limparZone('${zId}','${hId}')"><i class="fa-solid fa-trash"></i> Remover</button>
+                </div>
+                <input type="hidden" id="${hId}" value="${src.replace(/"/g,'&quot;')}">
+              </div>
+            </div>`;
+          } else {
+            return `
+            <div style="display:flex;flex-direction:column;gap:.3rem">
+              <div style="font-size:.6rem;color:var(--gray-400);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center">Foto ${i+2}</div>
+              ${criarPasteZoneHTML(zId,hId,'Foto '+(i+2))}
+            </div>`;
+          }
         }).join('')}
       </div>
-      <button class="btn-salvar-fotos" onclick="salvarFotos(${p.id})">
+      <button class="btn-salvar-fotos" onclick="salvarFotosAdmin(${p.id})" style="margin-top:.6rem;padding:.4rem .8rem;background:var(--black);color:#fff;border:none;border-radius:5px;font-size:.72rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.35rem;">
         <i class="fa-solid fa-floppy-disk"></i> Salvar fotos
       </button>
-    </div>` : '';
-
+    </div>`:'';
     return `
     <div class="adm-item" id="adm-item-${p.id}">
       <img class="adm-img" src="${p.img}" alt="${p.nome}">
@@ -1569,10 +1310,9 @@ function renderAdminLista(){
         <span class="card-stock ${stockClass}" style="margin-left:.2rem">${semE?'Esgotado':low?'Baixo':'OK'}</span>
       </div>
       <div class="adm-actions">
-        <button class="btn-adm-edit" onclick="abrirEdicao(${p.id})" title="Editar produto"><i class="fa-solid fa-pen"></i> Editar</button>
+        <button class="btn-adm-edit" onclick="abrirEdicao(${p.id})"><i class="fa-solid fa-pen"></i> Editar</button>
         <button class="btn-toggle-fotos" onclick="toggleFotos(${p.id})">
-          <i class="fa-solid fa-images"></i>
-          Fotos
+          <i class="fa-solid fa-images"></i> Fotos
           ${fotosCount>0?`<span class="fotos-count-badge">${fotosCount}</span>`:''}
         </button>
         <button class="btn-adm-del" onclick="deletarProduto(${p.id})"><i class="fa-solid fa-trash"></i></button>
@@ -1582,44 +1322,27 @@ function renderAdminLista(){
   }).join('')}</div>`;
 }
 
-// Preview ao digitar URL na seção de fotos do admin
-function prevFotoAdmin(prodId, idx){
-  const inp = document.getElementById(`foto-${prodId}-${idx}`);
-  const prev = document.getElementById(`prev-${prodId}-${idx}`);
-  const src = inp.value.trim();
-  if(src){
-    prev.innerHTML = `<img src="${src}" onerror="this.style.display='none'">`;
-  } else {
-    prev.innerHTML = `<div class="no-img"><i class="fa-regular fa-image"></i><span>vazio</span></div>`;
-  }
-}
-
 function toggleFotos(id){
-  if(fotosExpandidas.has(id)){
-    fotosExpandidas.delete(id);
-  } else {
-    fotosExpandidas.add(id);
-  }
+  if(fotosExpandidas.has(id)) fotosExpandidas.delete(id);
+  else fotosExpandidas.add(id);
   renderAdminLista();
-  // scroll para o item
   setTimeout(()=>{
-    const el = document.getElementById(`adm-item-${id}`);
+    const el=document.getElementById(`adm-item-${id}`);
     if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
   },50);
 }
 
-function salvarFotos(id){
-  const p = produtos.find(x=>x.id===id);
-  if(!p) return;
-  const fotos = [0,1,2,3].map(i=>{
-    const inp = document.getElementById(`foto-${id}-${i}`);
-    return inp ? inp.value.trim() : '';
+function salvarFotosAdmin(id){
+  const p=produtos.find(x=>x.id===id);
+  if(!p)return;
+  const fotos=[0,1,2,3].map(i=>{
+    const h=document.getElementById(`admh-${id}-${i}`);
+    return h?h.value.trim():'';
   }).filter(Boolean);
-  p.fotos = fotos;
+  p.fotos=fotos;
   salvarDB();
   renderAdminLista();
   renderGrid();
-  // manter expandido após salvar
   fotosExpandidas.add(id);
   toast(`Fotos de "${p.nome}" salvas! (${fotos.length} foto${fotos.length!==1?'s':''})`);
 }
@@ -1629,9 +1352,7 @@ function salvarEstoque(id){
   const p=produtos.find(x=>x.id===id);
   if(!p)return;
   p.estoque=Math.max(0,val);
-  salvarDB();
-  renderAdminLista();
-  renderGrid();
+  salvarDB(); renderAdminLista(); renderGrid();
   toast(`Estoque de "${p.nome}" atualizado para ${p.estoque}`);
 }
 
@@ -1641,147 +1362,81 @@ function deletarProduto(id){
   produtos=produtos.filter(x=>x.id!==id);
   carrinho=carrinho.filter(x=>x.id!==id);
   fotosExpandidas.delete(id);
-  salvarDB();
-  atualizarBadge();
-  renderAdminLista();
-  renderGrid();
-  renderFiltros();
+  salvarDB(); atualizarBadge(); renderAdminLista(); renderGrid(); renderFiltros();
   toast(`"${p.nome}" removido.`);
 }
 
 function resetarProdutos(){
-  if(!confirm('Restaurar todos os produtos padrão? Os produtos adicionados manualmente serão perdidos.')) return;
-  produtos = JSON.parse(JSON.stringify(PRODUTOS_PADRAO));
+  if(!confirm('Restaurar todos os produtos padrão? Os produtos adicionados manualmente serão perdidos.'))return;
+  produtos=JSON.parse(JSON.stringify(PRODUTOS_PADRAO));
   fotosExpandidas.clear();
-  salvarDB();
-  renderAdminLista();
-  renderGrid();
-  renderFiltros();
+  salvarDB(); renderAdminLista(); renderGrid(); renderFiltros();
   toast('Catálogo restaurado para o padrão.');
 }
 
-// ===== PREVIEW FOTOS NO FORM NOVO PRODUTO =====
-function previewFotoExtra(inputId, previewId){
-  const src = document.getElementById(inputId).value.trim();
-  const prev = document.getElementById(previewId);
-  if(!prev) return;
-  if(src){
-    // se já tem img, atualiza src; senão cria
-    let img = prev.querySelector('img');
-    if(!img){
-      prev.innerHTML = '';
-      img = document.createElement('img');
-      prev.appendChild(img);
-    }
-    img.src = src;
-    img.onerror = ()=>{ img.style.display='none'; };
-    img.onload = ()=>{ img.style.display=''; };
-  } else {
-    prev.innerHTML = '<div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>';
-  }
-}
-
-// Badge selector
+// Badge selector — novo produto
 document.querySelectorAll('.bp-opt').forEach(el=>{
   el.addEventListener('click',function(){
     document.querySelectorAll('.bp-opt').forEach(x=>x.classList.remove('on'));
-    this.classList.add('on');
-    badgeSel=this.dataset.val;
+    this.classList.add('on'); badgeSel=this.dataset.val;
   });
 });
-document.querySelector('.bp-opt[data-val=""]').classList.add('on');
 
 function adicionarProduto(){
   const nome=document.getElementById('fNome').value.trim();
   const preco=parseFloat(document.getElementById('fPreco').value);
   const desc=document.getElementById('fDesc').value.trim();
-  const img=document.getElementById('fImg').value.trim();
+  const img=getZoneValue('img-main');
   const estoque=parseInt(document.getElementById('fEstoque').value)||0;
   const sizesRaw=document.getElementById('fSizes').value.trim();
   if(!nome){toast('Informe o nome do produto');return;}
   if(!preco||isNaN(preco)){toast('Informe um preço válido');return;}
-  if(!img){toast('Informe a URL da imagem principal');return;}
+  if(!img){toast('Adicione a imagem principal (cole do WhatsApp ou URL)');return;}
   const sizes=sizesRaw?sizesRaw.split(',').map(s=>s.trim()).filter(Boolean):['P','M','G','GG'];
-  // coletar fotos extras
-  const fotos=[0,1,2,3].map(i=>{
-    const v=document.getElementById('fExtra'+i);
-    return v?v.value.trim():'';
-  }).filter(Boolean);
-  const novo={
-    id:nextId(),nome,preco,
-    desc:desc||'Produto de alta qualidade.',
-    img,badge:badgeSel||null,sizes,estoque,fotos
-  };
+  const fotos=[0,1,2,3].map(i=>getZoneValue(`img-extra-${i}`)).filter(Boolean);
+  const novo={id:nextId(),nome,preco,desc:desc||'Produto de alta qualidade.',img,badge:badgeSel||null,sizes,estoque,fotos};
   produtos.push(novo);
   salvarDB();
-  // reset form
+  // Limpar form
   document.getElementById('fNome').value='';
   document.getElementById('fPreco').value='';
   document.getElementById('fDesc').value='';
-  document.getElementById('fImg').value='';
   document.getElementById('fEstoque').value='10';
   document.getElementById('fSizes').value='';
-  [0,1,2,3].forEach(i=>{
-    const inp=document.getElementById('fExtra'+i);
-    if(inp) inp.value='';
-    const prev=document.getElementById('prev-extra-'+i);
-    if(prev) prev.innerHTML='<div class="ph"><i class="fa-regular fa-image"></i><span>URL abaixo</span></div>';
-  });
+  limparZone('pz-main','img-main');
+  [0,1,2,3].forEach(i=>limparZone(`pz-extra-${i}`,`img-extra-${i}`));
   document.querySelectorAll('.bp-opt').forEach(x=>x.classList.remove('on'));
   document.querySelector('.bp-opt[data-val=""]').classList.add('on');
-  badgeSel='';
-  renderGrid();
-  renderFiltros();
+  badgeSel=''; pasteZoneAtiva=null;
+  renderGrid(); renderFiltros();
   toast(`"${nome}" adicionado ao catálogo!`);
   const listaTab=document.querySelectorAll('.atab')[0];
   adminTab('lista',listaTab);
 }
 
-// ===== EDITAR PRODUTO =====
-let editId = null;
-let editBadgeSel = '';
-
+// ========== EDITAR PRODUTO ==========
 document.querySelectorAll('.edit-bp').forEach(el=>{
   el.addEventListener('click',function(){
     document.querySelectorAll('.edit-bp').forEach(x=>x.classList.remove('on'));
-    this.classList.add('on');
-    editBadgeSel = this.dataset.val;
+    this.classList.add('on'); editBadgeSel=this.dataset.val;
   });
 });
 
 function abrirEdicao(id){
-  const p = produtos.find(x=>x.id===id);
-  if(!p) return;
-  editId = id;
-
-  document.getElementById('eNome').value = p.nome;
-  document.getElementById('ePreco').value = p.preco;
-  document.getElementById('eDesc').value = p.desc;
-  document.getElementById('eImg').value = p.img;
-  document.getElementById('eImgPreview').src = p.img;
-  document.getElementById('eEstoque').value = p.estoque;
-  document.getElementById('eSizes').value = (p.sizes||[]).join(',');
-
-  // badge
-  editBadgeSel = p.badge||'';
-  document.querySelectorAll('.edit-bp').forEach(x=>{
-    x.classList.toggle('on', x.dataset.val === editBadgeSel);
-  });
-
-  // fotos extras
-  const fotos = p.fotos||[];
-  [0,1,2,3].forEach(i=>{
-    const src = fotos[i]||'';
-    const inp = document.getElementById('eFoto'+i);
-    const prev = document.getElementById('eprev-'+i);
-    if(inp) inp.value = src;
-    if(prev){
-      prev.innerHTML = src
-        ? `<img src="${src}" onerror="this.style.opacity='.2'">`
-        : `<div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div>`;
-    }
-  });
-
+  const p=produtos.find(x=>x.id===id);
+  if(!p)return;
+  editId=id;
+  document.getElementById('eNome').value=p.nome;
+  document.getElementById('ePreco').value=p.preco;
+  document.getElementById('eDesc').value=p.desc;
+  document.getElementById('eEstoque').value=p.estoque;
+  document.getElementById('eSizes').value=(p.sizes||[]).join(',');
+  editBadgeSel=p.badge||'';
+  document.querySelectorAll('.edit-bp').forEach(x=>x.classList.toggle('on',x.dataset.val===editBadgeSel));
+  const imgSrc=p.img||'';
+  if(imgSrc){ setZoneImagem('epz-main','eimg-main',imgSrc); }
+  else { limparZone('epz-main','eimg-main'); }
+  buildFotosExtrasGrid('fotosExtrasGrid','editFotosGrid','',p.fotos||[]);
   document.getElementById('editOverlay').classList.add('on');
   document.body.style.overflow='hidden';
 }
@@ -1789,59 +1444,32 @@ function abrirEdicao(id){
 function fecharEdicao(){
   document.getElementById('editOverlay').classList.remove('on');
   document.body.style.overflow='';
-  editId = null;
-}
-
-function prevEditImg(){
-  const src = document.getElementById('eImg').value.trim();
-  const prev = document.getElementById('eImgPreview');
-  prev.src = src || '';
-}
-
-function prevEditFoto(i){
-  const src = document.getElementById('eFoto'+i).value.trim();
-  const prev = document.getElementById('eprev-'+i);
-  if(!prev) return;
-  prev.innerHTML = src
-    ? `<img src="${src}" onerror="this.style.opacity='.2'">`
-    : `<div class="ph"><i class="fa-regular fa-image"></i><span>vazio</span></div>`;
+  editId=null; pasteZoneAtiva=null;
 }
 
 function salvarEdicao(){
-  if(!editId) return;
-  const p = produtos.find(x=>x.id===editId);
-  if(!p) return;
-
-  const nome = document.getElementById('eNome').value.trim();
-  const preco = parseFloat(document.getElementById('ePreco').value);
-  const img = document.getElementById('eImg').value.trim();
-
-  if(!nome){ toast('Informe o nome do produto'); return; }
-  if(!preco||isNaN(preco)){ toast('Informe um preço válido'); return; }
-  if(!img){ toast('Informe a URL da imagem principal'); return; }
-
-  p.nome = nome;
-  p.preco = preco;
-  p.desc = document.getElementById('eDesc').value.trim() || p.desc;
-  p.img = img;
-  p.estoque = Math.max(0, parseInt(document.getElementById('eEstoque').value)||0);
-  const sizesRaw = document.getElementById('eSizes').value.trim();
-  p.sizes = sizesRaw ? sizesRaw.split(',').map(s=>s.trim()).filter(Boolean) : p.sizes;
-  p.badge = editBadgeSel || null;
-  p.fotos = [0,1,2,3].map(i=>{
-    const v = document.getElementById('eFoto'+i);
-    return v ? v.value.trim() : '';
-  }).filter(Boolean);
-
-  salvarDB();
-  fecharEdicao();
-  renderAdminLista();
-  renderGrid();
-  renderFiltros();
+  if(!editId)return;
+  const p=produtos.find(x=>x.id===editId);
+  if(!p)return;
+  const nome=document.getElementById('eNome').value.trim();
+  const preco=parseFloat(document.getElementById('ePreco').value);
+  const img=getZoneValue('eimg-main');
+  if(!nome){toast('Informe o nome do produto');return;}
+  if(!preco||isNaN(preco)){toast('Informe um preço válido');return;}
+  if(!img){toast('Adicione a imagem principal');return;}
+  p.nome=nome; p.preco=preco;
+  p.desc=document.getElementById('eDesc').value.trim()||p.desc;
+  p.img=img;
+  p.estoque=Math.max(0,parseInt(document.getElementById('eEstoque').value)||0);
+  const sizesRaw=document.getElementById('eSizes').value.trim();
+  p.sizes=sizesRaw?sizesRaw.split(',').map(s=>s.trim()).filter(Boolean):p.sizes;
+  p.badge=editBadgeSel||null;
+  p.fotos=[0,1,2,3].map(i=>getZoneValue(`eimg-extra-${i}`)).filter(Boolean);
+  salvarDB(); fecharEdicao(); renderAdminLista(); renderGrid(); renderFiltros();
   toast(`"${p.nome}" atualizado com sucesso!`);
 }
 
-// ESC fecha
+// ESC fecha tudo
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){fecharModal();fecharCarrinho();fecharAdmin();fecharEdicao();}
 });
